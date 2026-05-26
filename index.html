@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny Santos Yburan | Virtual Assistant</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #080810;
+            --bg-card: #0f0f1a;
+            --accent: #7c3aed;
+            --accent-light: #a78bfa;
+            --accent-glow: rgba(124, 58, 237, 0.3);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --border: rgba(124, 58, 237, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 8, 16, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--accent-light); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.78rem;
+            color: var(--accent-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--muted);
+            max-width: 620px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            box-shadow: 0 0 24px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: #6d28d9;
+            box-shadow: 0 0 36px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-light);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: rgba(124, 58, 237, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            margin-bottom: 3rem;
+            border-radius: 2px;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 1rem;
+            line-height: 1.85;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.4rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .stat-card:hover { border-color: var(--accent); }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 0.4rem;
+        }
+
+        /* SKILLS */
+        .skills-outer {
+            background: rgba(124, 58, 237, 0.03);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skills-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .skill-category h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.28rem 0.7rem;
+            background: rgba(124, 58, 237, 0.08);
+            border: 1px solid rgba(124, 58, 237, 0.18);
+            border-radius: 100px;
+            font-size: 0.78rem;
+            color: var(--text);
+        }
+
+        /* EXPERIENCE */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 6px; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), transparent 90%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.35rem;
+            top: 0.45rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .timeline-date {
+            font-size: 0.78rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.1rem;
+        }
+
+        .timeline-company {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-list {
+            list-style: none;
+        }
+
+        .timeline-list li {
+            color: var(--muted);
+            font-size: 0.88rem;
+            padding: 0.2rem 0 0.2rem 1.2rem;
+            position: relative;
+            line-height: 1.65;
+        }
+
+        .timeline-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-light);
+        }
+
+        /* EDUCATION & TOOLS */
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.25rem;
+            transition: border-color 0.2s;
+        }
+
+        .edu-card:hover { border-color: var(--accent); }
+
+        .edu-degree {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .edu-school {
+            color: var(--accent-light);
+            font-size: 0.88rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .edu-year {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .cert-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .cert-list li {
+            color: var(--muted);
+            font-size: 0.85rem;
+            padding: 0.2rem 0 0.2rem 1.2rem;
+            position: relative;
+        }
+
+        .cert-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-light);
+        }
+
+        .tools-section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-light);
+            margin: 2.5rem 0 1rem;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tool-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem 1.1rem;
+            font-size: 0.83rem;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .tool-item:hover {
+            border-color: var(--accent);
+            background: rgba(124, 58, 237, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* CONTACT */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -120px; left: 50%;
+            transform: translateX(-50%);
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-card h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-card p {
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+
+        .contact-link:hover { color: var(--accent-light); }
+
+        .contact-icon {
+            width: 38px; height: 38px;
+            background: rgba(124,58,237,0.12);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links { gap: 1.25rem; }
+            .nav-links a { font-size: 0.82rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            section { padding: 4rem 1.25rem; }
+            .skills-inner { padding: 4rem 1.25rem; }
+            .contact-card { padding: 2.5rem 1.25rem; }
+            .contact-links { flex-direction: column; align-items: center; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">Jenny S. Yburan</div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div>
+        <div class="hero-tag">Available for Remote Work</div>
+        <h1>Jenny Santos Yburan</h1>
+        <p class="hero-sub">Virtual Assistant & AI-Powered Workflow Specialist — helping businesses streamline operations, manage e-commerce, and automate repetitive tasks efficiently.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Work With Me</a>
+            <a href="#experience" class="btn btn-outline">View My Experience</a>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+        <div class="about-text">
+            <p>I'm a detail-oriented and tech-savvy Virtual Assistant based in San Carlos City, Pangasinan with hands-on experience in sales support, e-commerce operations, data entry, and AI-assisted workflows.</p>
+            <p>I'm skilled in customer communication, inbox management, order processing, and online sales operations. I am currently expanding my expertise in AI automation tools — including ChatGPT, Claude, and n8n — to help businesses streamline repetitive tasks and improve overall efficiency.</p>
+            <p>Known for being highly organized, reliable, and a fast learner, I adapt quickly to new tools and systems and can operate independently from day one.</p>
+        </div>
+        <div class="about-stats">
+            <div class="stat-card">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Years in E-commerce</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">AI</div>
+                <div class="stat-label">ChatGPT · Claude · n8n</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Remote Ready</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">BSEd</div>
+                <div class="stat-label">Education Graduate</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<div class="skills-outer" id="skills">
+    <div class="skills-inner">
+        <div class="section-label">What I Offer</div>
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="section-divider"></div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>E-commerce & Operations</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">E-commerce Operations</span>
+                    <span class="skill-tag">Order Management</span>
+                    <span class="skill-tag">Product Listing</span>
+                    <span class="skill-tag">Invoicing</span>
+                    <span class="skill-tag">Order Fulfillment</span>
+                    <span class="skill-tag">Inventory Tracking</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>AI & Automation</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">ChatGPT</span>
+                    <span class="skill-tag">Claude AI</span>
+                    <span class="skill-tag">n8n Workflows</span>
+                    <span class="skill-tag">AI Content Generation</span>
+                    <span class="skill-tag">Process Automation</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Admin & Data</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Data Entry</span>
+                    <span class="skill-tag">Google Sheets</span>
+                    <span class="skill-tag">Microsoft Excel</span>
+                    <span class="skill-tag">Microsoft Office</span>
+                    <span class="skill-tag">Research & Reports</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Sales & Customer Support</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Lead Generation</span>
+                    <span class="skill-tag">CRM</span>
+                    <span class="skill-tag">Facebook Inbox</span>
+                    <span class="skill-tag">Live Selling</span>
+                    <span class="skill-tag">Customer Relations</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Social Media & Content</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Social Media Management</span>
+                    <span class="skill-tag">Content Posting</span>
+                    <span class="skill-tag">Product Photography</span>
+                    <span class="skill-tag">Copywriting</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Soft Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Public Speaking</span>
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Written Communication</span>
+                    <span class="skill-tag">Self-Managed</span>
+                    <span class="skill-tag">Fast Learner</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-divider"></div>
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">July 2025 – Present</div>
+            <div class="timeline-title">Virtual Assistant & Sales Support Specialist</div>
+            <div class="timeline-company">E-commerce Retail Operations</div>
+            <ul class="timeline-list">
+                <li>Managed end-to-end e-commerce operations including product listing, order processing, invoicing, and customer fulfillment</li>
+                <li>Handled customer inquiries and follow-ups via Facebook inbox and social media platforms</li>
+                <li>Created product posts, descriptions, and visual content across multiple online sales channels</li>
+                <li>Tracked inventory, sales data, and business performance metrics using Google Sheets and Excel</li>
+                <li>Used ChatGPT and Claude to draft content, manage communications, and improve daily workflow efficiency</li>
+                <li>Operated independently managing all aspects of a live online retail business with no supervision</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024</div>
+            <div class="timeline-title">Sales Assistant</div>
+            <div class="timeline-company">E-commerce & Live Selling Operations</div>
+            <ul class="timeline-list">
+                <li>Conducted live selling sessions presenting products to online audiences, driving real-time sales conversions</li>
+                <li>Managed product photography, content creation, and product listing across multiple platforms</li>
+                <li>Processed customer orders and generated accurate invoices across multiple sales channels</li>
+                <li>Handled Facebook inbox management — inquiries, concerns, and customer relationships</li>
+                <li>Maintained inventory records and coordinated order fulfillment processes</li>
+                <li>Created engaging social media posts to drive traffic and increase online customer engagement</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">September 2025 – February 2026</div>
+            <div class="timeline-title">Private Tutor</div>
+            <div class="timeline-company">Academic Support</div>
+            <ul class="timeline-list">
+                <li>Managed student records, progress tracking, and performance documentation across multiple students</li>
+                <li>Developed organized lesson materials and maintained detailed academic reports</li>
+                <li>Communicated consistently with parents via messaging platforms for scheduling, updates, and progress reporting</li>
+                <li>Demonstrated strong time management and attention to detail in a fully self-managed setup</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">January 2025 – April 2025</div>
+            <div class="timeline-title">Teaching Intern</div>
+            <div class="timeline-company">Real National High School, Urbiztondo, Pangasinan</div>
+            <ul class="timeline-list">
+                <li>Delivered classroom instruction and managed student records and assessment documentation</li>
+                <li>Planned and executed structured lessons aligned with curriculum standards and learning objectives</li>
+                <li>Collaborated with school staff and maintained organized documentation throughout the internship</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">Education & Tools</h2>
+    <div class="section-divider"></div>
+
+    <div class="edu-card">
+        <div class="edu-degree">Bachelor of Secondary Education — Major in Filipino</div>
+        <div class="edu-school">Pangasinan State University, San Carlos Campus</div>
+        <div class="edu-year">2021 – 2025</div>
+    </div>
+
+    <div class="edu-card">
+        <div class="edu-degree">Certifications & Training</div>
+        <ul class="cert-list">
+            <li>University Practice Teaching Orientation & Webinar — January 2025</li>
+            <li>Seminar on Effective Research Writing — April 2024</li>
+            <li>Seminar Workshop Dulaang Filipino — April 2023</li>
+        </ul>
+    </div>
+
+    <div class="tools-section-label">Tools & Platforms</div>
+    <div class="tools-grid">
+        <div class="tool-item">ChatGPT</div>
+        <div class="tool-item">Claude AI</div>
+        <div class="tool-item">n8n</div>
+        <div class="tool-item">Google Sheets</div>
+        <div class="tool-item">Microsoft Excel</div>
+        <div class="tool-item">Microsoft Office Suite</div>
+        <div class="tool-item">Facebook Inbox</div>
+        <div class="tool-item">E-commerce Platforms</div>
+        <div class="tool-item">Social Media Platforms</div>
+        <div class="tool-item">Live Selling Tools</div>
+        <div class="tool-item">Invoicing Systems</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-card">
+        <h2>Let's Work Together</h2>
+        <p>Looking for a reliable, tech-savvy Virtual Assistant? I'm available for remote work and ready to support your business operations from day one.</p>
+        <div class="contact-links">
+            <a href="mailto:jennyburan21@gmail.com" class="contact-link">
+                <div class="contact-icon">✉</div>
+                jennyburan21@gmail.com
+            </a>
+            <a href="tel:+639074323759" class="contact-link">
+                <div class="contact-icon">📞</div>
+                +63 907 432 3759
+            </a>
+            <a href="tel:+639911331476" class="contact-link">
+                <div class="contact-icon">📞</div>
+                +63 991 133 1476
+            </a>
+        </div>
+        <a href="mailto:jennyburan21@gmail.com" class="btn btn-primary">Send Me a Message</a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Jenny Santos Yburan &nbsp;·&nbsp; Virtual Assistant & AI Workflow Specialist &nbsp;·&nbsp; San Carlos City, Pangasinan</p>
+</footer>
+
+<script>
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const targets = ['about', 'skills', 'experience', 'education', 'contact'];
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        targets.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && window.scrollY >= el.offsetTop - 120) current = id;
+        });
+        navLinks.forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + current ? '#a78bfa' : '';
+        });
+    });
+</script>
+</body>
+</html>
