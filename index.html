@@ -523,6 +523,7 @@
             .skills-inner { padding: 4rem 1.25rem; }
             .contact-card { padding: 2.5rem 1.25rem; }
             .contact-links { flex-direction: column; align-items: center; }
+            [style*="grid-column: span 2"] { grid-column: span 1 !important; }
         }
 
         @media (max-width: 480px) {
@@ -540,6 +541,7 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
@@ -760,6 +762,40 @@
         <div class="tool-item">Live Selling Tools</div>
         <div class="tool-item">Invoicing Systems</div>
     </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-label">AI Work Samples</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
+
+        <div class="skill-category" style="grid-column: span 2;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Web Development · WS Agency</div>
+                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Internal Web Dashboard</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a fully functional internal web dashboard for a client at WS Agency using Claude AI. The dashboard includes a <strong style="color:var(--text);">live calendar</strong> for scheduling and a <strong style="color:var(--text);">live leads & caller profiles</strong> section for managing and tracking client leads in real time.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Claude AI</span>
+                        <span class="skill-tag">Web Dashboard</span>
+                        <span class="skill-tag">Live Calendar</span>
+                        <span class="skill-tag">Lead Management</span>
+                        <span class="skill-tag">Caller Profiles</span>
+                        <span class="skill-tag">WS Agency</span>
+                    </div>
+                </div>
+                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🖥️</div>
+                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Claude AI</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <p style="color:var(--muted); font-size:0.82rem; margin-top:1.5rem;">More projects coming soon — currently expanding AI automation skills with n8n and workflow integrations.</p>
 </section>
 
 <!-- CONTACT -->
