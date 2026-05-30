@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jenny Yburan | Virtual Assistant</title>
+    <title>Jenny Santos Yburan | Virtual Assistant</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,6 +32,7 @@
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
+        /* NAV */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -66,6 +67,7 @@
 
         .nav-links a:hover { color: var(--accent-light); }
 
+        /* HERO */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -179,6 +181,7 @@
             transform: translateY(-2px);
         }
 
+        /* SECTIONS */
         section {
             padding: 6rem 2rem;
             max-width: 1080px;
@@ -207,6 +210,7 @@
             border-radius: 2px;
         }
 
+        /* ABOUT */
         .about-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -250,6 +254,7 @@
             margin-top: 0.4rem;
         }
 
+        /* SKILLS */
         .skills-outer {
             background: rgba(124, 58, 237, 0.03);
             border-top: 1px solid var(--border);
@@ -304,6 +309,7 @@
             color: var(--text);
         }
 
+        /* EXPERIENCE */
         .timeline {
             position: relative;
             padding-left: 2rem;
@@ -353,7 +359,9 @@
             margin-bottom: 0.8rem;
         }
 
-        .timeline-list { list-style: none; }
+        .timeline-list {
+            list-style: none;
+        }
 
         .timeline-list li {
             color: var(--muted);
@@ -370,6 +378,7 @@
             color: var(--accent-light);
         }
 
+        /* EDUCATION & TOOLS */
         .edu-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -380,11 +389,28 @@
         }
 
         .edu-card:hover { border-color: var(--accent); }
-        .edu-degree { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
-        .edu-school { color: var(--accent-light); font-size: 0.88rem; margin-bottom: 0.2rem; }
-        .edu-year { color: var(--muted); font-size: 0.8rem; }
 
-        .cert-list { list-style: none; margin-top: 0.5rem; }
+        .edu-degree {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .edu-school {
+            color: var(--accent-light);
+            font-size: 0.88rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .edu-year {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .cert-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
 
         .cert-list li {
             color: var(--muted);
@@ -408,7 +434,11 @@
             margin: 2.5rem 0 1rem;
         }
 
-        .tools-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
 
         .tool-item {
             background: var(--bg-card);
@@ -426,6 +456,7 @@
             transform: translateY(-1px);
         }
 
+        /* CONTACT */
         .contact-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -446,8 +477,17 @@
             pointer-events: none;
         }
 
-        .contact-card h2 { font-size: 1.9rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .contact-card p { color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; }
+        .contact-card h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-card p {
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+        }
 
         .contact-links {
             display: flex;
@@ -481,6 +521,7 @@
             flex-shrink: 0;
         }
 
+        /* FOOTER */
         footer {
             text-align: center;
             padding: 2rem;
@@ -489,6 +530,7 @@
             border-top: 1px solid var(--border);
         }
 
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             nav { padding: 1rem 1.25rem; }
             .nav-links { gap: 1.25rem; }
@@ -508,8 +550,9 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-    <div class="nav-logo">Jenny Yburan</div>
+    <div class="nav-logo">Jenny S. Yburan</div>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -520,10 +563,11 @@
     </ul>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
     <div>
         <div class="hero-photo">
-            <img src="photo.jpg" alt="Jenny Yburan">
+            <img src="photo.jpg" alt="Jenny Santos Yburan">
         </div>
         <div class="hero-tag">Available for Remote Work</div>
         <h1>Jenny Yburan</h1>
@@ -535,6 +579,7 @@
     </div>
 </div>
 
+<!-- ABOUT -->
 <section id="about">
     <div class="section-label">Who I Am</div>
     <h2 class="section-title">About Me</h2>
@@ -546,14 +591,27 @@
             <p>Known for being highly organized, reliable, and a fast learner, I adapt quickly to new tools and systems and can operate independently from day one.</p>
         </div>
         <div class="about-stats">
-            <div class="stat-card"><div class="stat-number">2+</div><div class="stat-label">Years in E-commerce</div></div>
-            <div class="stat-card"><div class="stat-number">AI</div><div class="stat-label">ChatGPT · Claude · n8n</div></div>
-            <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Remote Ready</div></div>
-            <div class="stat-card"><div class="stat-number">BSEd</div><div class="stat-label">Education Graduate</div></div>
+            <div class="stat-card">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Years in E-commerce</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">AI</div>
+                <div class="stat-label">ChatGPT · Claude · n8n</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Remote Ready</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">BSEd</div>
+                <div class="stat-label">Education Graduate</div>
+            </div>
         </div>
     </div>
 </section>
 
+<!-- SKILLS -->
 <div class="skills-outer" id="skills">
     <div class="skills-inner">
         <div class="section-label">What I Offer</div>
@@ -624,11 +682,13 @@
     </div>
 </div>
 
+<!-- EXPERIENCE -->
 <section id="experience">
     <div class="section-label">Work History</div>
     <h2 class="section-title">Experience</h2>
     <div class="section-divider"></div>
     <div class="timeline">
+
         <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">July 2025 – Present</div>
@@ -643,6 +703,7 @@
                 <li>Operated independently managing all aspects of a live online retail business with no supervision</li>
             </ul>
         </div>
+
         <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">2024</div>
@@ -657,6 +718,7 @@
                 <li>Created engaging social media posts to drive traffic and increase online customer engagement</li>
             </ul>
         </div>
+
         <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">September 2025 – February 2026</div>
@@ -669,6 +731,7 @@
                 <li>Demonstrated strong time management and attention to detail in a fully self-managed setup</li>
             </ul>
         </div>
+
         <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">January 2025 – April 2025</div>
@@ -680,18 +743,22 @@
                 <li>Collaborated with school staff and maintained organized documentation throughout the internship</li>
             </ul>
         </div>
+
     </div>
 </section>
 
+<!-- EDUCATION -->
 <section id="education">
     <div class="section-label">Background</div>
     <h2 class="section-title">Education & Tools</h2>
     <div class="section-divider"></div>
+
     <div class="edu-card">
         <div class="edu-degree">Bachelor of Secondary Education — Major in Filipino</div>
         <div class="edu-school">Pangasinan State University, San Carlos Campus</div>
         <div class="edu-year">2021 – 2025</div>
     </div>
+
     <div class="edu-card">
         <div class="edu-degree">Certifications & Training</div>
         <ul class="cert-list">
@@ -700,6 +767,7 @@
             <li>Seminar Workshop Dulaang Filipino — April 2023</li>
         </ul>
     </div>
+
     <div class="tools-section-label">Tools & Platforms</div>
     <div class="tools-grid">
         <div class="tool-item">ChatGPT</div>
@@ -716,11 +784,13 @@
     </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
     <div class="section-label">AI Work Samples</div>
     <h2 class="section-title">Projects</h2>
     <div class="section-divider"></div>
     <div class="skills-grid">
+
         <div class="skill-category" style="grid-column: span 2;">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
                 <div>
@@ -743,10 +813,46 @@
                 </div>
             </div>
         </div>
+
     </div>
+        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Web Development · King Land Buyers</div>
+                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Grace AI Receptionist Dashboard</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a real-time AI receptionist dashboard for King Land Buyers using Claude AI. The dashboard features a <strong style="color:var(--text);">live overview of call performance</strong>, <strong style="color:var(--text);">lead tracking by state</strong>, <strong style="color:var(--text);">caller profiles</strong>, <strong style="color:var(--text);">status distribution charts</strong>, and a <strong style="color:var(--text);">live calendar</strong> showing leads and calls by date. The system tracks total leads, qualified leads, callbacks, conversion rates, and returning callers in real time.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Claude AI</span>
+                        <span class="skill-tag">Real-Time Dashboard</span>
+                        <span class="skill-tag">Lead Tracking</span>
+                        <span class="skill-tag">Caller Profiles</span>
+                        <span class="skill-tag">Live Calendar</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">King Land Buyers</span>
+                    </div>
+                </div>
+                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">📊</div>
+                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Claude AI</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="dashboard1.jpg" alt="Grace AI Receptionist Overview" style="width:100%; height:200px; object-fit:cover; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Overview — Real-time performance dashboard</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="dashboard2.jpg" alt="Grace AI Calendar View" style="width:100%; height:200px; object-fit:cover; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Calendar — Leads and calls tracked by date</div>
+                </div>
+            </div>
+        </div>
+
     <p style="color:var(--muted); font-size:0.82rem; margin-top:1.5rem;">More projects coming soon — currently expanding AI automation skills with n8n and workflow integrations.</p>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
     <div class="contact-card">
         <h2>Let's Work Together</h2>
@@ -770,12 +876,13 @@
 </section>
 
 <footer>
-    <p>© 2026 Jenny Yburan &nbsp;·&nbsp; Virtual Assistant & AI Workflow Specialist &nbsp;·&nbsp; San Carlos City, Pangasinan</p>
+    <p>© 2026 Jenny Santos Yburan &nbsp;·&nbsp; Virtual Assistant & AI Workflow Specialist &nbsp;·&nbsp; San Carlos City, Pangasinan</p>
 </footer>
 
 <script>
     const navLinks = document.querySelectorAll('.nav-links a');
-    const targets = ['about', 'skills', 'experience', 'education', 'projects', 'contact'];
+    const targets = ['about', 'skills', 'experience', 'education', 'contact'];
+
     window.addEventListener('scroll', () => {
         let current = '';
         targets.forEach(id => {
