@@ -8,14 +8,14 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg: #080810;
-            --bg-card: #0f0f1a;
-            --accent: #7c3aed;
-            --accent-light: #a78bfa;
-            --accent-glow: rgba(124, 58, 237, 0.3);
-            --text: #e2e8f0;
-            --muted: #94a3b8;
-            --border: rgba(124, 58, 237, 0.2);
+            --bg: #f0f4ff;
+            --bg-card: #ffffff;
+            --accent: #6d28d9;
+            --accent-light: #7c3aed;
+            --accent-glow: rgba(109, 40, 217, 0.15);
+            --text: #1e1b4b;
+            --muted: #6b7280;
+            --border: rgba(109, 40, 217, 0.2);
         }
 
         html { scroll-behavior: smooth; }
@@ -27,6 +27,50 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
+        /* MARQUEE TOOLS ANIMATION */
+        .tools-marquee-wrapper {
+            overflow: hidden;
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            margin: 2rem 0;
+        }
+        .tools-marquee-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            animation: marquee-scroll 25s linear infinite;
+        }
+        .tools-marquee-track:hover { animation-play-state: paused; }
+        .tools-marquee-wrapper.reverse .tools-marquee-track {
+            animation-direction: reverse;
+        }
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-tool {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f5f3ff;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+            cursor: default;
+            transition: background 0.2s;
+        }
+        .marquee-tool:hover {
+            background: var(--accent);
+            color: white;
+        }
+        .marquee-tool span { font-size: 1rem; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
@@ -41,7 +85,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(8, 8, 16, 0.85);
+            background: rgba(240, 244, 255, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
@@ -530,6 +574,568 @@
             border-top: 1px solid var(--border);
         }
 
+        /* CURSOR GLOW */
+        .cursor-glow {
+            position: fixed;
+            width: 350px; height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: left 0.08s ease, top 0.08s ease;
+        }
+
+        /* SMOOTH SCROLL */
+        html { scroll-behavior: smooth; }
+
+        /* TYPEWRITER */
+        .typewriter-text::after {
+            content: '|';
+            animation: blink 0.75s step-end infinite;
+            color: var(--accent);
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* HERO TITLE GRADIENT ANIMATION */
+        .hero h1 {
+            background: linear-gradient(135deg, #6d28d9, #a78bfa, #6d28d9, #4c1d95);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease infinite;
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* CARD TILT AND GLOW ON HOVER */
+        .skill-category {
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            cursor: default;
+        }
+        .skill-category:hover {
+            transform: translateY(-8px) rotateX(2deg) scale(1.02) !important;
+            box-shadow: 0 20px 60px rgba(109,40,217,0.2) !important;
+        }
+
+        /* TIMELINE ITEM SLIDE */
+        .timeline-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-item:hover {
+            transform: translateX(8px);
+            box-shadow: -4px 0 20px rgba(109,40,217,0.15);
+        }
+
+        /* STAT CARD BOUNCE */
+        .stat-card {
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(109,40,217,0.2);
+        }
+
+        /* SKILL TAG POP */
+        .skill-tag {
+            transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1) !important;
+        }
+        .skill-tag:hover {
+            transform: scale(1.15) translateY(-2px) !important;
+            background: var(--accent) !important;
+            color: white !important;
+            cursor: default;
+        }
+
+        /* BUTTON PULSE */
+        .btn-primary {
+            animation: pulse-btn 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse-btn {
+            0%,100% { box-shadow: 0 0 0 0 rgba(109,40,217,0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(109,40,217,0); }
+        }
+
+        /* SECTION DIVIDER ANIMATION */
+        .section-divider {
+            animation: divider-grow 1.5s ease forwards;
+            transform-origin: left;
+        }
+        @keyframes divider-grow {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* FLOATING RINGS BEHIND HERO */
+        .ring {
+            position: fixed;
+            border-radius: 50%;
+            border: 1px solid rgba(124,58,237,0.12);
+            pointer-events: none;
+            z-index: -1;
+            animation: ring-pulse 6s ease-in-out infinite;
+        }
+        .ring-1 { width:300px; height:300px; top:10%; left:5%; animation-delay:0s; }
+        .ring-2 { width:500px; height:500px; top:20%; right:-100px; animation-delay:2s; }
+        .ring-3 { width:200px; height:200px; bottom:15%; left:10%; animation-delay:4s; }
+        @keyframes ring-pulse {
+            0%,100% { transform: scale(1); opacity:0.4; }
+            50% { transform: scale(1.1); opacity:0.1; }
+        }
+
+        /* SCROLL PROGRESS BAR */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6d28d9, #a78bfa);
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ENHANCED REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* GLOWING DOTS GRID BACKGROUND */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(109,40,217,0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* LIGHTBOX */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10,5,30,0.92);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox-img-wrap {
+            position: relative;
+            max-width: 90vw;
+            max-height: 88vh;
+            transform: scale(0.85);
+            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+        }
+        .lightbox-overlay.active .lightbox-img-wrap {
+            transform: scale(1);
+        }
+        .lightbox-img-wrap img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 14px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            display: block;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: #7c3aed;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(109,40,217,0.5);
+            transition: transform 0.2s, background 0.2s;
+        }
+        .lightbox-close:hover { transform: scale(1.15); background: #6d28d9; }
+        .lightbox-caption {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+        .sample-img {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, filter 0.3s ease !important;
+        }
+        .sample-img:hover {
+            transform: scale(1.03) !important;
+            filter: brightness(1.08);
+        }
+
+        /* HERO PHOTO ORBIT RING */
+        .hero-photo {
+            position: relative;
+        }
+        .hero-photo::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #6d28d9, #a78bfa, #c4b5fd, #6d28d9);
+            animation: orbit-spin 3s linear infinite;
+            z-index: -1;
+        }
+        .hero-photo::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: var(--bg);
+            z-index: -1;
+        }
+        @keyframes orbit-spin { to { transform: rotate(360deg); } }
+
+        /* HERO BADGE FLOAT */
+        .hero-tag {
+            animation: badge-float 3s ease-in-out infinite;
+        }
+        @keyframes badge-float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* SHIMMER ON PRIMARY BUTTON */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            animation: btn-shimmer 2.5s ease infinite;
+            pointer-events: none;
+        }
+        @keyframes btn-shimmer {
+            0% { left: -100%; }
+            60%,100% { left: 150%; }
+        }
+
+        /* ANIMATED BORDER ON CONTACT CARD */
+        .contact-card {
+            position: relative;
+        }
+        .contact-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: conic-gradient(from var(--angle, 0deg), #6d28d9, #a78bfa, #c4b5fd, #7c3aed, #6d28d9);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: border-rotate 4s linear infinite;
+            pointer-events: none;
+        }
+        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes border-rotate { to { --angle: 360deg; } }
+
+        /* TIMELINE DOT PULSE */
+        .timeline-dot {
+            animation: dot-pulse 2s ease-in-out infinite !important;
+        }
+        @keyframes dot-pulse {
+            0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(109,40,217,0.5); }
+            50% { transform: scale(1.3); box-shadow: 0 0 0 8px rgba(109,40,217,0); }
+        }
+
+        /* SKILL TAG STAGGERED ENTRANCE */
+        .skill-tag {
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, color 0.2s !important;
+        }
+        .skill-tag.tag-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* NAV GLOW ON SCROLL */
+        nav.scrolled {
+            background: rgba(240,244,255,0.98);
+            box-shadow: 0 4px 30px rgba(109,40,217,0.12);
+        }
+
+        /* SECTION LABEL SHIMMER */
+        .section-label {
+            background: linear-gradient(90deg, #7c3aed 0%, #c4b5fd 50%, #7c3aed 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: label-shine 3s linear infinite;
+        }
+        @keyframes label-shine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* STAT NUMBER COUNT-UP FLASH */
+        .stat-number {
+            transition: color 0.3s, transform 0.3s;
+        }
+        .stat-card.counting .stat-number {
+            color: #a78bfa;
+            transform: scale(1.1);
+        }
+
+        /* TOOL ITEM WAVE */
+        .tool-item {
+            transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1) !important;
+        }
+        .tool-item:hover {
+            transform: translateY(-6px) scale(1.08) !important;
+            border-color: var(--accent) !important;
+            background: rgba(124,58,237,0.15) !important;
+            box-shadow: 0 8px 24px rgba(109,40,217,0.2);
+        }
+
+        /* EDU CARD SLIDE-IN GLOW */
+        .edu-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .edu-card:hover {
+            transform: translateX(8px) !important;
+            box-shadow: -4px 0 30px rgba(109,40,217,0.15) !important;
+        }
+
+        /* MARQUEE PAUSE INDICATOR */
+        .tools-marquee-track:hover .marquee-tool {
+            opacity: 0.7;
+        }
+        .tools-marquee-track:hover .marquee-tool:hover {
+            opacity: 1;
+        }
+
+        /* HERO CONTENT FLOAT */
+        .hero > div {
+            animation: hero-enter 1s cubic-bezier(0.16,1,0.3,1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        @keyframes hero-enter {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 3D TILT CARD */
+        .tilt-card {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* FOOTER WAVE */
+        footer {
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 300%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #7c3aed, #a78bfa, #7c3aed, transparent);
+            animation: footer-wave 4s linear infinite;
+        }
+        @keyframes footer-wave {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* NAV LOGO PULSE */
+        .nav-logo {
+            background: linear-gradient(90deg, #6d28d9, #a78bfa, #6d28d9);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: label-shine 3s linear infinite;
+        }
+
+        /* SCROLL DOWN ARROW IN HERO */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            opacity: 0.5;
+            animation: scroll-hint-fade 2s ease-in-out infinite;
+        }
+        .scroll-hint span {
+            display: block;
+            width: 8px; height: 8px;
+            border-right: 2px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
+            transform: rotate(45deg);
+            animation: scroll-hint-chevron 1.5s ease infinite;
+        }
+        .scroll-hint span:nth-child(2) { animation-delay: 0.2s; opacity: 0.6; }
+        .scroll-hint span:nth-child(3) { animation-delay: 0.4s; opacity: 0.3; }
+        @keyframes scroll-hint-chevron {
+            0%,100% { transform: rotate(45deg) translateY(0); }
+            50% { transform: rotate(45deg) translateY(4px); }
+        }
+        @keyframes scroll-hint-fade {
+            0%,100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+
+        /* PARTICLE CANVAS */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* WORD REVEAL ON TITLES */
+        .word-reveal { display: inline-block; overflow: hidden; vertical-align: bottom; margin-right: 0.18em; }
+        .word-inner {
+            display: inline-block;
+            transform: translateY(110%) skewY(8deg);
+            opacity: 0;
+            transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
+        }
+        .word-inner.word-in { transform: translateY(0) skewY(0deg); opacity: 1; }
+
+        /* HOLOGRAPHIC SHIMMER ON CARDS */
+        .skill-category { position: relative; overflow: hidden; }
+        .skill-category::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at var(--holo-x, 50%) var(--holo-y, 50%), rgba(167,139,250,0.28), rgba(124,58,237,0.08) 45%, transparent 65%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .skill-category:hover::after { opacity: 1; }
+        .skill-category > * { position: relative; z-index: 1; }
+
+        /* CURSOR TRAIL */
+        .cursor-trail-dot {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9996;
+            transform: translate(-50%, -50%);
+        }
+
+        /* CONTACT CARD AMBIENT PULSE */
+        .contact-card { animation: contact-pulse 4s ease-in-out infinite; }
+        @keyframes contact-pulse {
+            0%,100% { box-shadow: 0 0 0px rgba(109,40,217,0); }
+            50% { box-shadow: 0 0 80px rgba(109,40,217,0.1), 0 0 120px rgba(167,139,250,0.06); }
+        }
+
+        /* SECTION DIVIDER GLOW */
+        .section-divider { box-shadow: 0 0 10px rgba(109,40,217,0.45); }
+
+        /* AURORA BACKGROUND SHIFT */
+        body {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 35%, #f0f4ff 65%, #eef4ff 100%);
+            background-size: 400% 400%;
+            animation: aurora-bg 12s ease infinite;
+        }
+        @keyframes aurora-bg {
+            0%,100% { background-position: 0% 50%; }
+            33% { background-position: 100% 0%; }
+            66% { background-position: 50% 100%; }
+        }
+
+        /* HERO SUBTITLE WAVE */
+        .hero-sub { animation: sub-float 5s ease-in-out infinite; }
+        @keyframes sub-float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        /* GLOWING RING AROUND HERO BUTTONS */
+        .hero-buttons { position: relative; }
+        .hero-buttons::after {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50px;
+            background: radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            animation: btn-ring-pulse 3s ease-in-out infinite;
+        }
+        @keyframes btn-ring-pulse {
+            0%,100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+
+        /* SKILL TAG RAINBOW ON HOVER */
+        .skill-tag:hover {
+            background: linear-gradient(90deg, #7c3aed, #a78bfa, #818cf8) !important;
+            color: white !important;
+            border-color: transparent !important;
+            box-shadow: 0 4px 16px rgba(124,58,237,0.35);
+        }
+
+        /* TIMELINE LINE ANIMATED DRAW */
+        .timeline.tl-ready::before {
+            animation: tl-draw 1.8s cubic-bezier(0.16,1,0.3,1) forwards;
+            transform-origin: top center;
+        }
+        @keyframes tl-draw { from { transform: scaleY(0); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
+
+        /* EDU CARD LEFT ACCENT BAR */
+        .edu-card {
+            border-left: 3px solid transparent;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .edu-card:hover {
+            border-left-color: var(--accent) !important;
+            transform: translateX(6px) !important;
+            box-shadow: -4px 0 24px rgba(109,40,217,0.12) !important;
+        }
+
+        /* HERO PHOTO FLOAT */
+        .hero-photo {
+            transition: transform 0.15s ease;
+            animation: photo-idle 6s ease-in-out infinite;
+        }
+        @keyframes photo-idle {
+            0%,100% { box-shadow: 0 0 30px rgba(109,40,217,0.2); }
+            50% { box-shadow: 0 0 60px rgba(109,40,217,0.4), 0 0 100px rgba(167,139,250,0.2); }
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             nav { padding: 1rem 1.25rem; }
@@ -546,9 +1152,125 @@
         @media (max-width: 480px) {
             .nav-links { display: none; }
         }
+
+        /* BACKGROUND CANVAS */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* SCROLL REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* FLOATING BLOBS */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: -1;
+            animation: blob-float 10s ease-in-out infinite;
+        }
+        .blob-1 {
+            width: 500px; height: 500px;
+            background: #7c3aed;
+            top: -100px; left: -100px;
+            animation-delay: 0s;
+        }
+        .blob-2 {
+            width: 400px; height: 400px;
+            background: #a78bfa;
+            top: 40%; right: -100px;
+            animation-delay: 3s;
+        }
+        .blob-3 {
+            width: 350px; height: 350px;
+            background: #6d28d9;
+            bottom: -50px; left: 30%;
+            animation-delay: 6s;
+        }
+        @keyframes blob-float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            33% { transform: translateY(-30px) scale(1.05); }
+            66% { transform: translateY(20px) scale(0.95); }
+        }
+
+        /* PARTICLE DOTS */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+            animation: particle-rise linear infinite;
+        }
+        @keyframes particle-rise {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
     </style>
 </head>
 <body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-img-wrap">
+        <button class="lightbox-close" id="lightboxClose">✕</button>
+        <img id="lightboxImg" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+</div>
+
+<!-- SCROLL PROGRESS BAR -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- BACKGROUND BLOBS -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<!-- FLOATING RINGS -->
+<div class="ring ring-1"></div>
+<div class="ring ring-2"></div>
+<div class="ring ring-3"></div>
 
 <!-- NAV -->
 <nav>
@@ -567,15 +1289,18 @@
 <div class="hero">
     <div>
         <div class="hero-photo">
-            <img src="photo.jpg" alt="Jenny Santos Yburan">
+            <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/photo.jpg" alt="Jenny Santos Yburan">
         </div>
         <div class="hero-tag">Available for Remote Work</div>
         <h1>Jenny Yburan</h1>
-        <p class="hero-sub">Virtual Assistant & AI-Powered Workflow Specialist — helping businesses streamline operations, manage e-commerce, and automate repetitive tasks efficiently.</p>
+        <p class="hero-sub">Virtual Assistant & AI-Powered Workflow Specialist  helping businesses streamline operations, manage e-commerce, and automate repetitive tasks efficiently.</p>
         <div class="hero-buttons">
             <a href="#contact" class="btn btn-primary">Work With Me</a>
             <a href="#experience" class="btn btn-outline">View My Experience</a>
         </div>
+    </div>
+    <div class="scroll-hint">
+        <span></span><span></span><span></span>
     </div>
 </div>
 
@@ -587,7 +1312,7 @@
     <div class="about-grid">
         <div class="about-text">
             <p>I'm a detail-oriented and tech-savvy Virtual Assistant based in San Carlos City, Pangasinan with hands-on experience in sales support, e-commerce operations, data entry, and AI-assisted workflows.</p>
-            <p>I'm skilled in customer communication, inbox management, order processing, and online sales operations. I am currently expanding my expertise in AI automation tools — including ChatGPT, Claude, and n8n — to help businesses streamline repetitive tasks and improve overall efficiency.</p>
+            <p>I'm skilled in customer communication, inbox management, order processing, and online sales operations. I am currently expanding my expertise in AI automation tools  including ChatGPT, Claude, and n8n  to help businesses streamline repetitive tasks and improve overall efficiency.</p>
             <p>Known for being highly organized, reliable, and a fast learner, I adapt quickly to new tools and systems and can operate independently from day one.</p>
         </div>
         <div class="about-stats">
@@ -610,6 +1335,64 @@
         </div>
     </div>
 </section>
+
+<!-- ANIMATED TOOLS MARQUEE -->
+<div class="tools-marquee-wrapper">
+    <div class="tools-marquee-track">
+        <div class="marquee-tool"><span>🛍️</span> Shopify</div>
+        <div class="marquee-tool"><span>🤖</span> ChatGPT</div>
+        <div class="marquee-tool"><span>✨</span> Claude AI</div>
+        <div class="marquee-tool"><span>📊</span> Google Sheets</div>
+        <div class="marquee-tool"><span>📧</span> Gmail</div>
+        <div class="marquee-tool"><span>🎨</span> Canva</div>
+        <div class="marquee-tool"><span>📱</span> Facebook Suite</div>
+        <div class="marquee-tool"><span>⚡</span> GoHighLevel</div>
+        <div class="marquee-tool"><span>✂️</span> CapCut</div>
+        <div class="marquee-tool"><span>📍</span> Google Maps</div>
+        <div class="marquee-tool"><span>📄</span> Google Docs</div>
+        <div class="marquee-tool"><span>🔍</span> Apollo.io</div>
+        <div class="marquee-tool"><span>🛍️</span> Shopify</div>
+        <div class="marquee-tool"><span>🤖</span> ChatGPT</div>
+        <div class="marquee-tool"><span>✨</span> Claude AI</div>
+        <div class="marquee-tool"><span>📊</span> Google Sheets</div>
+        <div class="marquee-tool"><span>📧</span> Gmail</div>
+        <div class="marquee-tool"><span>🎨</span> Canva</div>
+        <div class="marquee-tool"><span>📱</span> Facebook Suite</div>
+        <div class="marquee-tool"><span>⚡</span> GoHighLevel</div>
+        <div class="marquee-tool"><span>✂️</span> CapCut</div>
+        <div class="marquee-tool"><span>📍</span> Google Maps</div>
+        <div class="marquee-tool"><span>📄</span> Google Docs</div>
+        <div class="marquee-tool"><span>🔍</span> Apollo.io</div>
+    </div>
+</div>
+<div class="tools-marquee-wrapper reverse" style="margin-top:-1rem;">
+    <div class="tools-marquee-track">
+        <div class="marquee-tool"><span>🖼️</span> Hunter.io</div>
+        <div class="marquee-tool"><span>📦</span> Order Fulfillment</div>
+        <div class="marquee-tool"><span>💬</span> Inbox Management</div>
+        <div class="marquee-tool"><span>🗂️</span> Data Entry</div>
+        <div class="marquee-tool"><span>📸</span> Product Listing</div>
+        <div class="marquee-tool"><span>🔎</span> Lead Research</div>
+        <div class="marquee-tool"><span>📅</span> Scheduling</div>
+        <div class="marquee-tool"><span>🧾</span> Invoicing</div>
+        <div class="marquee-tool"><span>💼</span> Admin Support</div>
+        <div class="marquee-tool"><span>📢</span> Social Media</div>
+        <div class="marquee-tool"><span>🌐</span> Remote Work</div>
+        <div class="marquee-tool"><span>✅</span> SOP Compliance</div>
+        <div class="marquee-tool"><span>🖼️</span> Hunter.io</div>
+        <div class="marquee-tool"><span>📦</span> Order Fulfillment</div>
+        <div class="marquee-tool"><span>💬</span> Inbox Management</div>
+        <div class="marquee-tool"><span>🗂️</span> Data Entry</div>
+        <div class="marquee-tool"><span>📸</span> Product Listing</div>
+        <div class="marquee-tool"><span>🔎</span> Lead Research</div>
+        <div class="marquee-tool"><span>📅</span> Scheduling</div>
+        <div class="marquee-tool"><span>🧾</span> Invoicing</div>
+        <div class="marquee-tool"><span>💼</span> Admin Support</div>
+        <div class="marquee-tool"><span>📢</span> Social Media</div>
+        <div class="marquee-tool"><span>🌐</span> Remote Work</div>
+        <div class="marquee-tool"><span>✅</span> SOP Compliance</div>
+    </div>
+</div>
 
 <!-- SKILLS -->
 <div class="skills-outer" id="skills">
@@ -713,7 +1496,7 @@
                 <li>Conducted live selling sessions presenting products to online audiences, driving real-time sales conversions</li>
                 <li>Managed product photography, content creation, and product listing across multiple platforms</li>
                 <li>Processed customer orders and generated accurate invoices across multiple sales channels</li>
-                <li>Handled Facebook inbox management — inquiries, concerns, and customer relationships</li>
+                <li>Handled Facebook inbox management  inquiries, concerns, and customer relationships</li>
                 <li>Maintained inventory records and coordinated order fulfillment processes</li>
                 <li>Created engaging social media posts to drive traffic and increase online customer engagement</li>
             </ul>
@@ -754,7 +1537,7 @@
     <div class="section-divider"></div>
 
     <div class="edu-card">
-        <div class="edu-degree">Bachelor of Secondary Education — Major in Filipino</div>
+        <div class="edu-degree">Bachelor of Secondary Education  Major in Filipino</div>
         <div class="edu-school">Pangasinan State University, San Carlos Campus</div>
         <div class="edu-year">2021 – 2025</div>
     </div>
@@ -762,9 +1545,9 @@
     <div class="edu-card">
         <div class="edu-degree">Certifications & Training</div>
         <ul class="cert-list">
-            <li>University Practice Teaching Orientation & Webinar — January 2025</li>
-            <li>Seminar on Effective Research Writing — April 2024</li>
-            <li>Seminar Workshop Dulaang Filipino — April 2023</li>
+            <li>University Practice Teaching Orientation & Webinar  January 2025</li>
+            <li>Seminar on Effective Research Writing  April 2024</li>
+            <li>Seminar Workshop Dulaang Filipino  April 2023</li>
         </ul>
     </div>
 
@@ -839,17 +1622,51 @@
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
                 <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="dashboard1.png" alt="Grace AI Receptionist Overview" style="width:100%; height:200px; object-fit:cover; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Overview — Real-time performance dashboard</div>
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/dashboard1.png" alt="Grace AI Receptionist Overview" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Overview  Real-time performance dashboard</div>
                 </div>
                 <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="dashboard2.png" alt="Grace AI Calendar View" style="width:100%; height:200px; object-fit:cover; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Calendar — Leads and calls tracked by date</div>
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/dashboard2.png" alt="Grace AI Calendar View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Calendar  Leads and calls tracked by date</div>
                 </div>
             </div>
         </div>
 
-    <p style="color:var(--muted); font-size:0.82rem; margin-top:1.5rem;">More projects coming soon — currently expanding AI automation skills with n8n and workflow integrations.</p>
+        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">E-commerce · Shopify Product Listing</div>
+                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Shopify Store  Hands-On Product Listing</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Created and published real product listings on a live Shopify store. Managed product titles, descriptions, pricing, categories, images, and publishing status across multiple sales channels. All products were set to <strong style="color:var(--text);">Active and Published</strong> status with accurate category assignments including Action Figures and Animal Figures.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Shopify</span>
+                        <span class="skill-tag">Product Listing</span>
+                        <span class="skill-tag">Product Publishing</span>
+                        <span class="skill-tag">Pricing</span>
+                        <span class="skill-tag">Category Management</span>
+                        <span class="skill-tag">Multi-Channel</span>
+                        <span class="skill-tag">E-commerce</span>
+                    </div>
+                </div>
+                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🛒</div>
+                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Platform</div>
+                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Shopify</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/shopify-products-1.png" alt="Shopify Product Listing - Status View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Product listings  Active status across multiple channels</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/shopify-products-2.png" alt="Shopify Product Listing - Published View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Products published with accurate pricing and categories</div>
+                </div>
+            </div>
+        </div>
+
+    <p style="color:var(--muted); font-size:0.82rem; margin-top:1.5rem;">More projects coming soon  currently expanding AI automation skills with n8n and workflow integrations.</p>
 </section>
 
 <!-- CONTACT -->
@@ -880,9 +1697,23 @@
 </footer>
 
 <script>
+    // SCROLL PROGRESS BAR
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        progressBar.style.width = scrolled + '%';
+    });
+
+    // CURSOR GLOW FOLLOW
+    const cursorGlow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', e => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // NAV HIGHLIGHT
     const navLinks = document.querySelectorAll('.nav-links a');
     const targets = ['about', 'skills', 'experience', 'education', 'contact'];
-
     window.addEventListener('scroll', () => {
         let current = '';
         targets.forEach(id => {
@@ -890,8 +1721,471 @@
             if (el && window.scrollY >= el.offsetTop - 120) current = id;
         });
         navLinks.forEach(a => {
-            a.style.color = a.getAttribute('href') === '#' + current ? '#a78bfa' : '';
+            a.style.color = a.getAttribute('href') === '#' + current ? '#7c3aed' : '';
         });
+    });
+
+    // SMOOTH SCROLL REVEAL
+    const revealEls = document.querySelectorAll('section, .skill-category, .timeline-item, .stat-card, .tools-marquee-wrapper, h2, .section-label');
+    revealEls.forEach(el => el.classList.add('reveal'));
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // FLOATING PARTICLES
+    function createParticle() {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 5 + 2;
+        p.style.cssText = `
+            width:${size}px; height:${size}px;
+            left:${Math.random()*100}vw;
+            animation-duration:${Math.random()*10+8}s;
+            animation-delay:${Math.random()*3}s;
+            opacity:0;
+        `;
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 18000);
+    }
+    setInterval(createParticle, 500);
+
+    // BLOB + RING PARALLAX
+    const blob1 = document.querySelector('.blob-1');
+    const blob2 = document.querySelector('.blob-2');
+    const blob3 = document.querySelector('.blob-3');
+    const ring1 = document.querySelector('.ring-1');
+    const ring2 = document.querySelector('.ring-2');
+    const ring3 = document.querySelector('.ring-3');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const y = window.scrollY;
+                if (blob1) blob1.style.transform = `translateY(${y * 0.18}px)`;
+                if (blob2) blob2.style.transform = `translateY(${-y * 0.12}px)`;
+                if (blob3) blob3.style.transform = `translateY(${y * 0.09}px)`;
+                if (ring1) ring1.style.transform = `translateY(${y * 0.05}px) rotate(${y*0.02}deg)`;
+                if (ring2) ring2.style.transform = `translateY(${-y * 0.07}px) rotate(${-y*0.01}deg)`;
+                if (ring3) ring3.style.transform = `translateY(${y * 0.06}px)`;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // TYPEWRITER EFFECT ON HERO TAGLINE
+    const taglines = [
+        'Virtual Assistant & AI-Powered Workflow Specialist',
+        'Shopify Product Listing Expert',
+        'Customer Support & Inbox Manager',
+        'Detail-Oriented & Reliable Remote Worker'
+    ];
+    const taglineEl = document.querySelector('.hero-tagline');
+    if (taglineEl) {
+        taglineEl.classList.add('typewriter-text');
+        let tIndex = 0, cIndex = 0, deleting = false;
+        function typeWriter() {
+            const current = taglines[tIndex];
+            if (!deleting) {
+                taglineEl.textContent = current.slice(0, cIndex + 1);
+                cIndex++;
+                if (cIndex === current.length) { deleting = true; setTimeout(typeWriter, 2000); return; }
+            } else {
+                taglineEl.textContent = current.slice(0, cIndex - 1);
+                cIndex--;
+                if (cIndex === 0) { deleting = false; tIndex = (tIndex + 1) % taglines.length; }
+            }
+            setTimeout(typeWriter, deleting ? 40 : 70);
+        }
+        typeWriter();
+    }
+
+    // CARD RIPPLE EFFECT ON CLICK
+    document.querySelectorAll('.skill-category, .stat-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            ripple.style.cssText = `
+                position:absolute; border-radius:50%;
+                width:10px; height:10px;
+                background:rgba(109,40,217,0.3);
+                left:${e.clientX - rect.left - 5}px;
+                top:${e.clientY - rect.top - 5}px;
+                transform:scale(0);
+                animation:ripple-expand 0.6s ease forwards;
+                pointer-events:none;
+            `;
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // RIPPLE KEYFRAME
+    const style = document.createElement('style');
+    style.textContent = '@keyframes ripple-expand { to { transform:scale(40); opacity:0; } }';
+    document.head.appendChild(style);
+
+    // NAV SCROLLED CLASS
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // NUMBER COUNTER ON STAT CARDS
+    function animateCounter(el, target, suffix) {
+        const card = el.closest('.stat-card');
+        card.classList.add('counting');
+        let current = 0;
+        const isNumeric = /^\d+/.test(target);
+        if (!isNumeric) { el.textContent = target; card.classList.remove('counting'); return; }
+        const end = parseInt(target);
+        const duration = 1200;
+        const step = duration / end;
+        const timer = setInterval(() => {
+            current++;
+            el.textContent = current + (suffix || '');
+            if (current >= end) {
+                el.textContent = target;
+                clearInterval(timer);
+                card.classList.remove('counting');
+            }
+        }, step);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const numEl = entry.target.querySelector('.stat-number');
+                const raw = numEl.textContent.trim();
+                animateCounter(numEl, raw);
+                statObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-card').forEach(c => statObserver.observe(c));
+
+    // STAGGERED SKILL TAGS ENTRANCE
+    const tagObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.skill-tag').forEach((tag, i) => {
+                    setTimeout(() => tag.classList.add('tag-visible'), i * 60);
+                });
+                tagObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.skill-category').forEach(c => tagObserver.observe(c));
+
+    // 3D MOUSE TILT ON PROJECT & SKILL CARDS
+    document.querySelectorAll('.skill-category').forEach(card => {
+        card.classList.add('tilt-card');
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            this.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-8px) scale(1.02)`;
+            this.style.boxShadow = `${-x * 20}px ${-y * 20}px 40px rgba(109,40,217,0.18)`;
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+        });
+    });
+
+    // TEXT SCRAMBLE ON HERO H1
+    const heroH1 = document.querySelector('.hero h1');
+    if (heroH1) {
+        const finalText = heroH1.textContent;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&*';
+        let iteration = 0;
+        const scramble = setInterval(() => {
+            heroH1.textContent = finalText.split('').map((letter, i) => {
+                if (i < iteration) return finalText[i];
+                return letter === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
+            }).join('');
+            if (iteration >= finalText.length) clearInterval(scramble);
+            iteration += 0.5;
+        }, 30);
+    }
+
+    // TOOL ITEMS WAVE ENTRANCE
+    const toolObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.tool-item').forEach((item, i) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1), all 0.25s cubic-bezier(0.34,1.56,0.64,1)';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, i * 50);
+                });
+                toolObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    const toolsGrid = document.querySelector('.tools-grid');
+    if (toolsGrid) toolObserver.observe(toolsGrid.parentElement);
+
+    // MARQUEE SPEED BOOST ON SCROLL
+    const tracks = document.querySelectorAll('.tools-marquee-track');
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+        const speed = Math.min(1 + Math.abs(window.scrollY - lastScrollY) * 0.1, 5);
+        tracks.forEach(t => t.style.animationDuration = (25 / speed) + 's');
+        lastScrollY = window.scrollY;
+        clearTimeout(window._marqueeReset);
+        window._marqueeReset = setTimeout(() => {
+            tracks.forEach(t => t.style.animationDuration = '25s');
+        }, 300);
+    });
+
+    // ============================================================
+    // PARTICLE NETWORK CANVAS
+    // ============================================================
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let cW = canvas.width = window.innerWidth;
+    let cH = canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => {
+        cW = canvas.width = window.innerWidth;
+        cH = canvas.height = window.innerHeight;
+    });
+
+    let mouseCanvas = { x: -999, y: -999 };
+    document.addEventListener('mousemove', e => { mouseCanvas.x = e.clientX; mouseCanvas.y = e.clientY; });
+
+    const PCOUNT = 85;
+    const pts = Array.from({ length: PCOUNT }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        r: Math.random() * 2.2 + 0.8,
+        op: Math.random() * 0.35 + 0.15
+    }));
+
+    function animCanvas() {
+        ctx.clearRect(0, 0, cW, cH);
+        pts.forEach(p => {
+            const dx = p.x - mouseCanvas.x, dy = p.y - mouseCanvas.y;
+            const d = Math.hypot(dx, dy);
+            if (d < 110 && d > 0) {
+                const f = (110 - d) / 110;
+                p.vx += (dx / d) * f * 0.09;
+                p.vy += (dy / d) * f * 0.09;
+            }
+            const spd = Math.hypot(p.vx, p.vy);
+            if (spd > 2) { p.vx *= 0.9; p.vy *= 0.9; }
+            p.vx *= 0.996; p.vy *= 0.996;
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > cW) { p.vx *= -1; p.x = Math.max(0, Math.min(cW, p.x)); }
+            if (p.y < 0 || p.y > cH) { p.vy *= -1; p.y = Math.max(0, Math.min(cH, p.y)); }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(109,40,217,${p.op})`;
+            ctx.fill();
+        });
+        for (let i = 0; i < pts.length; i++) {
+            for (let j = i + 1; j < pts.length; j++) {
+                const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+                if (d < 125) {
+                    ctx.beginPath();
+                    ctx.moveTo(pts[i].x, pts[i].y);
+                    ctx.lineTo(pts[j].x, pts[j].y);
+                    ctx.strokeStyle = `rgba(109,40,217,${(1 - d / 125) * 0.18})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+            const dm = Math.hypot(pts[i].x - mouseCanvas.x, pts[i].y - mouseCanvas.y);
+            if (dm < 160) {
+                ctx.beginPath();
+                ctx.moveTo(pts[i].x, pts[i].y);
+                ctx.lineTo(mouseCanvas.x, mouseCanvas.y);
+                ctx.strokeStyle = `rgba(167,139,250,${(1 - dm / 160) * 0.5})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+        requestAnimationFrame(animCanvas);
+    }
+    animCanvas();
+
+    // ============================================================
+    // CURSOR TRAIL
+    // ============================================================
+    const TRAIL_N = 10;
+    const trailPos = Array.from({ length: TRAIL_N }, () => ({ x: -300, y: -300 }));
+    const trailEls = Array.from({ length: TRAIL_N }, (_, i) => {
+        const el = document.createElement('div');
+        const sz = Math.max(3, 13 - i * 1.1);
+        el.className = 'cursor-trail-dot';
+        el.style.cssText = `width:${sz}px;height:${sz}px;background:rgba(124,58,237,${0.65 - i * 0.06});`;
+        document.body.appendChild(el);
+        return el;
+    });
+    let rawMouse = { x: -300, y: -300 };
+    document.addEventListener('mousemove', e => { rawMouse = { x: e.clientX, y: e.clientY }; });
+    (function trailLoop() {
+        trailPos[0] = { ...rawMouse };
+        for (let i = 1; i < TRAIL_N; i++) {
+            trailPos[i].x += (trailPos[i - 1].x - trailPos[i].x) * 0.22;
+            trailPos[i].y += (trailPos[i - 1].y - trailPos[i].y) * 0.22;
+        }
+        trailEls.forEach((el, i) => {
+            el.style.left = trailPos[i].x + 'px';
+            el.style.top = trailPos[i].y + 'px';
+        });
+        requestAnimationFrame(trailLoop);
+    })();
+
+    // ============================================================
+    // MAGNETIC BUTTONS
+    // ============================================================
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', function(e) {
+            const r = this.getBoundingClientRect();
+            const x = (e.clientX - r.left - r.width / 2) * 0.3;
+            const y = (e.clientY - r.top - r.height / 2) * 0.3;
+            this.style.transform = `translate(${x}px,${y}px)`;
+        });
+        btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
+    });
+
+    // ============================================================
+    // WORD-BY-WORD TITLE REVEAL
+    // ============================================================
+    document.querySelectorAll('.section-title').forEach(el => {
+        el.innerHTML = el.textContent.trim().split(' ').map(w =>
+            `<span class="word-reveal"><span class="word-inner">${w}</span></span>`
+        ).join(' ');
+    });
+    const wordObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.word-inner').forEach((w, i) => {
+                    setTimeout(() => w.classList.add('word-in'), i * 95);
+                });
+                wordObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.section-title').forEach(el => wordObs.observe(el));
+
+    // ============================================================
+    // HOLOGRAPHIC SHIMMER — TRACK CURSOR INSIDE EACH CARD
+    // ============================================================
+    document.querySelectorAll('.skill-category').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const r = this.getBoundingClientRect();
+            this.style.setProperty('--holo-x', ((e.clientX - r.left) / r.width * 100) + '%');
+            this.style.setProperty('--holo-y', ((e.clientY - r.top) / r.height * 100) + '%');
+        });
+    });
+
+    // ============================================================
+    // HERO PHOTO 3D TILT WITH MOUSE
+    // ============================================================
+    const hPhoto = document.querySelector('.hero-photo');
+    if (hPhoto) {
+        document.addEventListener('mousemove', e => {
+            const r = hPhoto.getBoundingClientRect();
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            const rx = ((e.clientY - cy) / window.innerHeight) * -22;
+            const ry = ((e.clientX - cx) / window.innerWidth) * 22;
+            hPhoto.style.transform = `perspective(500px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.06)`;
+        });
+    }
+
+    // ============================================================
+    // TIMELINE LINE ANIMATED DRAW
+    // ============================================================
+    const tlObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('tl-ready');
+                tlObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.05 });
+    const timeline = document.querySelector('.timeline');
+    if (timeline) tlObs.observe(timeline);
+
+    // ============================================================
+    // SECTION LABEL LETTER-BY-LETTER REVEAL
+    // ============================================================
+    document.querySelectorAll('.section-label').forEach(el => {
+        const text = el.textContent;
+        el.innerHTML = text.split('').map(c =>
+            `<span style="display:inline-block;opacity:0;transform:translateY(8px);transition:opacity 0.3s ease,transform 0.3s ease;">${c === ' ' ? '&nbsp;' : c}</span>`
+        ).join('');
+        const labelObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('span').forEach((s, i) => {
+                        setTimeout(() => { s.style.opacity = '1'; s.style.transform = 'translateY(0)'; }, i * 35);
+                    });
+                    labelObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        labelObs.observe(el);
+    });
+
+    // ============================================================
+    // STAT CARDS — EXPLOSIVE ENTRANCE + TILT
+    // ============================================================
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const r = this.getBoundingClientRect();
+            const x = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+            const y = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+            this.style.setProperty('transform', `perspective(400px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) scale(1.07)`, 'important');
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.removeProperty('transform');
+        });
+    });
+
+    // LIGHTBOX
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => { lightboxImg.src = ''; }, 350);
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
     });
 </script>
 </body>
