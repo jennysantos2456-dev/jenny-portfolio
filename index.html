@@ -1136,6 +1136,91 @@
             50% { box-shadow: 0 0 60px rgba(109,40,217,0.4), 0 0 100px rgba(167,139,250,0.2); }
         }
 
+        /* PROJECT IMAGE ANIMATIONS */
+        .proj-img-wrap {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+        }
+        .proj-img-wrap:hover {
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 30px rgba(109,40,217,0.45), 0 12px 40px rgba(109,40,217,0.2) !important;
+            z-index: 10;
+        }
+
+        /* CLIP PATH WIPE REVEAL */
+        .sample-img {
+            clip-path: inset(0 100% 0 0);
+        }
+        .sample-img.img-revealed {
+            clip-path: inset(0 0% 0 0);
+            transition: clip-path 1s cubic-bezier(0.16,1,0.3,1), transform 0.5s ease, filter 0.4s ease !important;
+        }
+
+        /* HOVER OVERLAY */
+        .img-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(109,40,217,0.82), rgba(167,139,250,0.7));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
+        .proj-img-wrap:hover .img-overlay { opacity: 1; }
+        .img-overlay-icon {
+            font-size: 2.4rem;
+            display: block;
+            transform: scale(0.6) translateY(10px);
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .proj-img-wrap:hover .img-overlay-icon {
+            transform: scale(1.1) translateY(0);
+        }
+        .img-overlay-label {
+            color: rgba(255,255,255,0.92);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 0.6rem;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+        }
+        .proj-img-wrap:hover .img-overlay-label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* GLARE SHIMMER */
+        .img-glare {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 200px;
+            background: radial-gradient(circle at var(--gx,50%) var(--gy,50%), rgba(255,255,255,0.22) 0%, transparent 55%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .proj-img-wrap:hover .img-glare { opacity: 1; }
+
+        /* CAPTION SLIDE UP */
+        .img-caption {
+            transform: translateY(4px);
+            opacity: 0.7;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .proj-img-wrap:hover .img-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             nav { padding: 1rem 1.25rem; }
@@ -1666,7 +1751,126 @@
             </div>
         </div>
 
-    <p style="color:var(--muted); font-size:0.82rem; margin-top:1.5rem;">More projects coming soon  currently expanding AI automation skills with n8n and workflow integrations.</p>
+        <!-- AUTOMATION SECTION LABEL -->
+        <div style="grid-column: span 2; margin-top:2rem;">
+            <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:2px; color:var(--accent-light); margin-bottom:0.5rem;">AI Automation Projects</div>
+            <div style="width:50px; height:3px; background:linear-gradient(90deg,var(--accent),transparent); border-radius:2px;"></div>
+        </div>
+
+        <!-- PROJECT: GlowUp Voice Receptionist -->
+        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Voice Automation · Retell AI + n8n + Supabase</div>
+                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">GlowUp Hair Salon AI Voice Receptionist</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a fully working AI voice receptionist for GlowUp Hair Salon using Retell AI and GPT-4.1. The AI answers customer calls, collects caller information, and books appointments. After each call, an <strong style="color:var(--text);">n8n automation workflow</strong> is triggered that extracts call data, creates a <strong style="color:var(--text);">Google Calendar event</strong>, logs the call to <strong style="color:var(--text);">Google Sheets</strong>, saves it to <strong style="color:var(--text);">Supabase</strong>, and sends a <strong style="color:var(--text);">Discord notification</strong>. The entire system is deployed live on Railway.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Retell AI</span>
+                        <span class="skill-tag">GPT-4.1</span>
+                        <span class="skill-tag">n8n Automation</span>
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">Google Calendar</span>
+                        <span class="skill-tag">Google Sheets</span>
+                        <span class="skill-tag">Discord Webhook</span>
+                        <span class="skill-tag">Railway</span>
+                    </div>
+                </div>
+                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🎙️</div>
+                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Retell AI + n8n</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-receptionist.png" alt="GlowUp Hair Salon Call Now" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Voice receptionist web app ready to receive calls</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-connected.png" alt="GlowUp Hair Salon AI Voice Receptionist Connected" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">AI receptionist live and connected with a caller</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-n8n.png" alt="n8n Post-Call Automation Workflow" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">n8n post-call workflow automating calendar, sheets and Discord</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT: AI Blog Generator -->
+        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Content Automation · Python + n8n + Supabase</div>
+                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">AI Blog Generator</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a web app using Python and FastAPI that generates full blog posts using the <strong style="color:var(--text);">OpenAI API</strong>. The generated blog is automatically saved to a <strong style="color:var(--text);">Supabase database</strong>, converted to an HTML file, and sent to a <strong style="color:var(--text);">Discord channel</strong> via webhook using an n8n workflow. The app is deployed live on Railway.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">n8n Workflow</span>
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">Discord Webhook</span>
+                        <span class="skill-tag">Railway</span>
+                        <span class="skill-tag">GitHub</span>
+                    </div>
+                </div>
+                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">✍️</div>
+                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Python + OpenAI</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-generator-app.png" alt="AI Blog Generator Web App" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Blog generator producing full AI written blog posts</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-n8n.png" alt="Blog Generator n8n Workflow" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">n8n workflow automating blog generation and delivery</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-discord.png" alt="Blog sent to Discord" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Generated blog automatically sent to Discord as HTML file</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT: AI Website Chatbot -->
+        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Chatbot · Python + Web Scraping + OpenAI</div>
+                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">AI Website Knowledge Chatbot</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a Python web app that <strong style="color:var(--text);">scrapes any website</strong> and turns it into an AI chatbot that knows the business inside and out. Enter a website URL, the app crawls all pages and chunks the content, then you can ask it anything about that business. Powered by OpenAI and deployed on Railway.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Web Scraping</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Railway</span>
+                        <span class="skill-tag">GitHub</span>
+                    </div>
+                </div>
+                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🤖</div>
+                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Python + OpenAI</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/ai-chatbot-scrape.png" alt="AI Website Chatbot Scraping" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">App scraping a live website and chunking its content</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/ai-chatbot-chat.png" alt="AI Chatbot answering questions" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Chatbot answering questions from scraped business knowledge</div>
+                </div>
+            </div>
+        </div>
+
 </section>
 
 <!-- CONTACT -->
@@ -2156,6 +2360,56 @@
         card.addEventListener('mouseleave', function() {
             this.style.removeProperty('transform');
         });
+    });
+
+    // ============================================================
+    // PROJECT IMAGE LIFE — OVERLAY, GLARE, TILT, REVEAL
+    // ============================================================
+    document.querySelectorAll('.sample-img').forEach((img, idx) => {
+        const wrap = img.parentElement;
+        wrap.classList.add('proj-img-wrap');
+
+        // Add caption class to the next sibling div
+        if (img.nextElementSibling) {
+            img.nextElementSibling.classList.add('img-caption');
+        }
+
+        // Hover zoom overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'img-overlay';
+        overlay.innerHTML = `<span class="img-overlay-icon">🔍</span><span class="img-overlay-label">Click to expand</span>`;
+        wrap.appendChild(overlay);
+
+        // Glare effect
+        const glare = document.createElement('div');
+        glare.className = 'img-glare';
+        wrap.appendChild(glare);
+
+        // Mouse move — glare + 3D tilt
+        wrap.addEventListener('mousemove', function(e) {
+            const r = this.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width;
+            const y = (e.clientY - r.top) / r.height;
+            glare.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+            glare.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+            const rx = (y - 0.5) * -14;
+            const ry = (x - 0.5) * 14;
+            this.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
+        });
+        wrap.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+
+        // Clip-path wipe reveal on scroll
+        const revObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => img.classList.add('img-revealed'), idx * 130);
+                    revObs.unobserve(img);
+                }
+            });
+        }, { threshold: 0.15 });
+        revObs.observe(img);
     });
 
     // LIGHTBOX
