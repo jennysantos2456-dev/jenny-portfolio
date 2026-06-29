@@ -778,10 +778,9 @@
         }
         .sample-img {
             cursor: zoom-in;
-            transition: transform 0.3s ease, filter 0.3s ease !important;
+            transition: opacity 0.75s ease, transform 0.75s ease, filter 0.3s ease;
         }
         .sample-img:hover {
-            transform: scale(1.03) !important;
             filter: brightness(1.08);
         }
 
@@ -1148,13 +1147,15 @@
             z-index: 10;
         }
 
-        /* CLIP PATH WIPE REVEAL */
+        /* SCROLL FADE REVEAL */
         .sample-img {
-            clip-path: inset(0 100% 0 0);
+            opacity: 0;
+            transform: translateY(18px) scale(0.97);
+            transition: opacity 0.75s ease, transform 0.75s ease;
         }
         .sample-img.img-revealed {
-            clip-path: inset(0 0% 0 0);
-            transition: clip-path 1s cubic-bezier(0.16,1,0.3,1), transform 0.5s ease, filter 0.4s ease !important;
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         /* HOVER OVERLAY */
@@ -2400,17 +2401,24 @@
             this.style.transform = '';
         });
 
-        // Clip-path wipe reveal on scroll
+        // Fade-in reveal on scroll
         const revObs = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => img.classList.add('img-revealed'), idx * 130);
+                    setTimeout(() => img.classList.add('img-revealed'), idx * 100);
                     revObs.unobserve(img);
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
         revObs.observe(img);
     });
+
+    // Fallback: reveal all images after 1.5s in case IntersectionObserver misses them
+    setTimeout(() => {
+        document.querySelectorAll('.sample-img:not(.img-revealed)').forEach(img => {
+            img.classList.add('img-revealed');
+        });
+    }, 1500);
 
     // LIGHTBOX
     const lightbox = document.getElementById('lightbox');
