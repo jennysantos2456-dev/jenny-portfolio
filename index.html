@@ -8,15 +8,34 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg: #f0f4ff;
-            --bg-card: #ffffff;
-            --accent: #6d28d9;
-            --accent-light: #7c3aed;
-            --accent-glow: rgba(109, 40, 217, 0.15);
-            --text: #1e1b4b;
-            --muted: #6b7280;
-            --border: rgba(109, 40, 217, 0.2);
+            --bg: #f5f0e8;
+            --bg-card: #faf6ee;
+            --accent: #8b6340;
+            --accent-light: #a87d52;
+            --accent-glow: rgba(139, 99, 64, 0.15);
+            --text: #2c1a0e;
+            --muted: #8a7060;
+            --border: rgba(139, 99, 64, 0.2);
         }
+
+        /* ANIMATIONS DISABLED */
+        *, *::before, *::after {
+            animation: none !important;
+            animation-duration: 0s !important;
+        }
+        .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; }
+        .skill-tag { opacity: 1 !important; transform: scale(1) !important; }
+        .sample-img { opacity: 1 !important; transform: none !important; }
+        .hero > div { opacity: 1 !important; transform: none !important; }
+        .word-inner { opacity: 1 !important; transform: none !important; }
+        .hero-photo::before { display: none; }
+        .contact-card::after { display: none; }
+        .hero-buttons::after { display: none; }
+        footer::before { display: none; }
+        .scroll-hint { display: none; }
+        .cursor-glow { display: none; }
+        .blob, .ring, .particle { display: none; }
+        .tools-marquee-wrapper { display: none; }
 
         html { scroll-behavior: smooth; }
 
@@ -34,8 +53,8 @@
             background: #ffffff;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            margin: 2rem 0;
+            padding: 0.6rem 0;
+            margin: 0.75rem 0;
         }
         .tools-marquee-track {
             display: flex;
@@ -55,7 +74,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            background: #f5f3ff;
+            background: #ede0cc;
             border: 1px solid var(--border);
             border-radius: 50px;
             padding: 0.4rem 1rem;
@@ -85,7 +104,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(240, 244, 255, 0.92);
+            background: rgba(245, 240, 232, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
@@ -113,36 +132,28 @@
 
         /* HERO */
         .hero {
-            min-height: 100vh;
-            display: flex;
+            min-height: auto;
+            display: grid;
+            grid-template-columns: 1fr 340px;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
+            gap: 4rem;
+            padding: 7rem 4rem 4rem;
+            max-width: 1080px;
+            margin: 0 auto;
+            text-align: left;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 900px;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 65%);
-            pointer-events: none;
-        }
+        .hero::before { display: none; }
+
+        .hero-left { display: flex; flex-direction: column; gap: 0; }
 
         .hero-photo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
+            width: 100%;
+            height: 420px;
+            border-radius: 4px;
             overflow: hidden;
-            margin: 0 auto 1.5rem;
-            border: 3px solid var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
+            border: none;
+            box-shadow: 12px 12px 0 rgba(139,99,64,0.15);
         }
 
         .hero-photo img {
@@ -154,39 +165,42 @@
 
         .hero-tag {
             display: inline-block;
-            padding: 0.35rem 1rem;
-            background: rgba(124, 58, 237, 0.15);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.78rem;
-            color: var(--accent-light);
-            letter-spacing: 1.5px;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding: 0;
+            background: none;
+            border: none;
+            border-radius: 0;
         }
 
         .hero h1 {
-            font-size: clamp(2.4rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: normal;
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+            color: var(--text);
+            background: none;
+            -webkit-text-fill-color: var(--text);
+            letter-spacing: -1px;
         }
 
         .hero-sub {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: 0.95rem;
             color: var(--muted);
-            max-width: 620px;
-            margin: 0 auto 2.5rem;
+            max-width: 480px;
+            margin: 0 0 1.75rem;
+            line-height: 1.8;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
         }
 
@@ -209,7 +223,7 @@
         }
 
         .btn-primary:hover {
-            background: #6d28d9;
+            background: #8b6340;
             box-shadow: 0 0 36px var(--accent-glow);
             transform: translateY(-2px);
         }
@@ -221,44 +235,48 @@
         }
 
         .btn-outline:hover {
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(139, 99, 64, 0.1);
             transform: translateY(-2px);
         }
 
         /* SECTIONS */
         section {
-            padding: 6rem 2rem;
+            padding: 3rem 2rem;
             max-width: 1080px;
             margin: 0 auto;
         }
 
         .section-label {
-            font-size: 0.78rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-light);
-            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+            font-weight: 700;
         }
 
         .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.4rem);
-            font-weight: 700;
-            margin-bottom: 0.75rem;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            color: var(--text);
         }
 
         .section-divider {
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            margin-bottom: 3rem;
-            border-radius: 2px;
+            width: 40px;
+            height: 1.5px;
+            background: var(--accent);
+            margin-bottom: 2rem;
+            border-radius: 0;
         }
 
         /* ABOUT */
         .about-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 3rem;
+            gap: 2rem;
             align-items: start;
         }
 
@@ -300,7 +318,7 @@
 
         /* SKILLS */
         .skills-outer {
-            background: rgba(124, 58, 237, 0.03);
+            background: rgba(139, 99, 64, 0.03);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
@@ -308,7 +326,7 @@
         .skills-inner {
             max-width: 1080px;
             margin: 0 auto;
-            padding: 6rem 2rem;
+            padding: 3rem 2rem;
         }
 
         .skills-grid {
@@ -320,22 +338,25 @@
         .skill-category {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: border-color 0.2s, transform 0.2s;
+            border-left: none;
+            border-top: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            transition: border-top-color 0.2s, background 0.2s, box-shadow 0.2s;
         }
 
         .skill-category:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            background: rgba(139,99,64,0.04);
+            border-top-color: var(--accent-light);
         }
 
         .skill-category h3 {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-light);
-            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 0.85rem;
+            font-weight: 700;
         }
 
         .skill-tags {
@@ -346,93 +367,88 @@
 
         .skill-tag {
             padding: 0.28rem 0.7rem;
-            background: rgba(124, 58, 237, 0.08);
-            border: 1px solid rgba(124, 58, 237, 0.18);
+            background: rgba(139, 99, 64, 0.08);
+            border: 1px solid rgba(139, 99, 64, 0.18);
             border-radius: 100px;
             font-size: 0.78rem;
             color: var(--text);
         }
 
         /* EXPERIENCE */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 6px; bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent), transparent 90%);
-        }
+        .timeline { display: flex; flex-direction: column; gap: 0.75rem; }
 
         .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 1.75rem;
+            padding: 1.5rem 1.75rem;
+            border-bottom: none;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: 0 1px 6px rgba(139,99,64,0.07);
         }
 
-        .timeline-dot {
-            position: absolute;
-            left: -2.35rem;
-            top: 0.45rem;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 12px var(--accent-glow);
-        }
+        .timeline-item:last-child { border-bottom: none; }
+
+        .timeline-dot { display: none; }
+
+        .timeline-left { padding-top: 2px; }
 
         .timeline-date {
-            font-size: 0.78rem;
-            color: var(--accent-light);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.3rem;
+            font-size: 0.72rem;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.6;
         }
 
         .timeline-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.1rem;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-bottom: 0.2rem;
+            color: var(--text);
         }
 
         .timeline-company {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            margin-bottom: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
-        .timeline-list {
-            list-style: none;
-        }
+        .timeline-list { list-style: none; }
 
         .timeline-list li {
             color: var(--muted);
-            font-size: 0.88rem;
-            padding: 0.2rem 0 0.2rem 1.2rem;
+            font-size: 0.87rem;
+            padding: 0.18rem 0 0.18rem 1rem;
             position: relative;
-            line-height: 1.65;
+            line-height: 1.7;
         }
 
         .timeline-list li::before {
-            content: '▹';
+            content: '–';
             position: absolute;
             left: 0;
-            color: var(--accent-light);
+            color: var(--accent);
         }
 
         /* EDUCATION & TOOLS */
         .edu-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.75rem 2rem;
-            margin-bottom: 1.25rem;
-            transition: border-color 0.2s;
+            border-left: none;
+            border-top: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            transition: background 0.2s;
         }
 
-        .edu-card:hover { border-color: var(--accent); }
+        .edu-card:hover { background: rgba(139,99,64,0.05); }
 
         .edu-degree {
             font-size: 1rem;
@@ -475,7 +491,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--accent-light);
-            margin: 2.5rem 0 1rem;
+            margin: 1.25rem 0 0.6rem;
         }
 
         .tools-grid {
@@ -496,7 +512,7 @@
 
         .tool-item:hover {
             border-color: var(--accent);
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(139, 99, 64, 0.1);
             transform: translateY(-1px);
         }
 
@@ -505,7 +521,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 3.5rem 2rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -517,7 +533,7 @@
             top: -120px; left: 50%;
             transform: translateX(-50%);
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139,99,64,0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -530,15 +546,15 @@
         .contact-card p {
             color: var(--muted);
             max-width: 480px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 1.25rem;
         }
 
         .contact-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact-link {
@@ -555,7 +571,7 @@
 
         .contact-icon {
             width: 38px; height: 38px;
-            background: rgba(124,58,237,0.12);
+            background: rgba(139,99,64,0.12);
             border: 1px solid var(--border);
             border-radius: 8px;
             display: flex;
@@ -579,15 +595,12 @@
             position: fixed;
             width: 350px; height: 350px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139,99,64,0.12) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
             transform: translate(-50%, -50%);
             transition: left 0.08s ease, top 0.08s ease;
         }
-
-        /* SMOOTH SCROLL */
-        html { scroll-behavior: smooth; }
 
         /* TYPEWRITER */
         .typewriter-text::after {
@@ -599,7 +612,7 @@
 
         /* HERO TITLE GRADIENT ANIMATION */
         .hero h1 {
-            background: linear-gradient(135deg, #6d28d9, #a78bfa, #6d28d9, #4c1d95);
+            background: linear-gradient(135deg, #8b6340, #c4996a, #8b6340, #2c1a0e);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -619,7 +632,7 @@
         }
         .skill-category:hover {
             transform: translateY(-8px) rotateX(2deg) scale(1.02) !important;
-            box-shadow: 0 20px 60px rgba(109,40,217,0.2) !important;
+            box-shadow: 0 20px 60px rgba(139,99,64,0.2) !important;
         }
 
         /* TIMELINE ITEM SLIDE */
@@ -627,8 +640,8 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .timeline-item:hover {
-            transform: translateX(8px);
-            box-shadow: -4px 0 20px rgba(109,40,217,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139,99,64,0.13);
         }
 
         /* STAT CARD BOUNCE */
@@ -637,7 +650,7 @@
         }
         .stat-card:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(109,40,217,0.2);
+            box-shadow: 0 20px 40px rgba(139,99,64,0.2);
         }
 
         /* SKILL TAG POP */
@@ -656,8 +669,8 @@
             animation: pulse-btn 2.5s ease-in-out infinite;
         }
         @keyframes pulse-btn {
-            0%,100% { box-shadow: 0 0 0 0 rgba(109,40,217,0.4); }
-            50% { box-shadow: 0 0 0 12px rgba(109,40,217,0); }
+            0%,100% { box-shadow: 0 0 0 0 rgba(139,99,64,0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(139,99,64,0); }
         }
 
         /* SECTION DIVIDER ANIMATION */
@@ -674,7 +687,7 @@
         .ring {
             position: fixed;
             border-radius: 50%;
-            border: 1px solid rgba(124,58,237,0.12);
+            border: 1px solid rgba(139,99,64,0.12);
             pointer-events: none;
             z-index: -1;
             animation: ring-pulse 6s ease-in-out infinite;
@@ -692,26 +705,18 @@
             position: fixed;
             top: 0; left: 0;
             height: 3px;
-            background: linear-gradient(90deg, #6d28d9, #a78bfa);
+            background: linear-gradient(90deg, #8b6340, #c4996a);
             z-index: 9999;
             width: 0%;
             transition: width 0.1s linear;
         }
-
-        /* ENHANCED REVEAL */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* GLOWING DOTS GRID BACKGROUND */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(circle, rgba(109,40,217,0.08) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(139,99,64,0.08) 1px, transparent 1px);
             background-size: 32px 32px;
             z-index: -2;
             pointer-events: none;
@@ -758,7 +763,7 @@
             right: -18px;
             width: 38px; height: 38px;
             border-radius: 50%;
-            background: #7c3aed;
+            background: #a87d52;
             color: white;
             border: none;
             font-size: 1.1rem;
@@ -766,10 +771,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(109,40,217,0.5);
+            box-shadow: 0 4px 20px rgba(139,99,64,0.5);
             transition: transform 0.2s, background 0.2s;
         }
-        .lightbox-close:hover { transform: scale(1.15); background: #6d28d9; }
+        .lightbox-close:hover { transform: scale(1.15); background: #8b6340; }
         .lightbox-caption {
             text-align: center;
             color: rgba(255,255,255,0.7);
@@ -793,7 +798,7 @@
             position: absolute;
             inset: -6px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, #6d28d9, #a78bfa, #c4b5fd, #6d28d9);
+            background: conic-gradient(from 0deg, #8b6340, #c4996a, #e0d0b8, #8b6340);
             animation: orbit-spin 3s linear infinite;
             z-index: -1;
         }
@@ -846,7 +851,7 @@
             inset: 0;
             border-radius: 16px;
             padding: 2px;
-            background: conic-gradient(from var(--angle, 0deg), #6d28d9, #a78bfa, #c4b5fd, #7c3aed, #6d28d9);
+            background: conic-gradient(from var(--angle, 0deg), #8b6340, #c4996a, #e0d0b8, #a87d52, #8b6340);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
@@ -861,8 +866,8 @@
             animation: dot-pulse 2s ease-in-out infinite !important;
         }
         @keyframes dot-pulse {
-            0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(109,40,217,0.5); }
-            50% { transform: scale(1.3); box-shadow: 0 0 0 8px rgba(109,40,217,0); }
+            0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139,99,64,0.5); }
+            50% { transform: scale(1.3); box-shadow: 0 0 0 8px rgba(139,99,64,0); }
         }
 
         /* SKILL TAG STAGGERED ENTRANCE */
@@ -878,13 +883,13 @@
 
         /* NAV GLOW ON SCROLL */
         nav.scrolled {
-            background: rgba(240,244,255,0.98);
-            box-shadow: 0 4px 30px rgba(109,40,217,0.12);
+            background: rgba(242,245,251,0.98);
+            box-shadow: 0 4px 30px rgba(139,99,64,0.12);
         }
 
         /* SECTION LABEL SHIMMER */
         .section-label {
-            background: linear-gradient(90deg, #7c3aed 0%, #c4b5fd 50%, #7c3aed 100%);
+            background: linear-gradient(90deg, #a87d52 0%, #e0d0b8 50%, #a87d52 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -901,7 +906,7 @@
             transition: color 0.3s, transform 0.3s;
         }
         .stat-card.counting .stat-number {
-            color: #a78bfa;
+            color: #c4996a;
             transform: scale(1.1);
         }
 
@@ -912,8 +917,8 @@
         .tool-item:hover {
             transform: translateY(-6px) scale(1.08) !important;
             border-color: var(--accent) !important;
-            background: rgba(124,58,237,0.15) !important;
-            box-shadow: 0 8px 24px rgba(109,40,217,0.2);
+            background: rgba(139,99,64,0.15) !important;
+            box-shadow: 0 8px 24px rgba(139,99,64,0.2);
         }
 
         /* EDU CARD SLIDE-IN GLOW */
@@ -922,7 +927,7 @@
         }
         .edu-card:hover {
             transform: translateX(8px) !important;
-            box-shadow: -4px 0 30px rgba(109,40,217,0.15) !important;
+            box-shadow: -4px 0 30px rgba(139,99,64,0.15) !important;
         }
 
         /* MARQUEE PAUSE INDICATOR */
@@ -960,7 +965,7 @@
             top: 0; left: -100%;
             width: 300%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, #7c3aed, #a78bfa, #7c3aed, transparent);
+            background: linear-gradient(90deg, transparent, #a87d52, #c4996a, #a87d52, transparent);
             animation: footer-wave 4s linear infinite;
         }
         @keyframes footer-wave {
@@ -970,7 +975,7 @@
 
         /* NAV LOGO PULSE */
         .nav-logo {
-            background: linear-gradient(90deg, #6d28d9, #a78bfa, #6d28d9);
+            background: linear-gradient(90deg, #8b6340, #c4996a, #8b6340);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -1010,15 +1015,6 @@
             50% { opacity: 0.9; }
         }
 
-        /* PARTICLE CANVAS */
-        #bg-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
         /* WORD REVEAL ON TITLES */
         .word-reveal { display: inline-block; overflow: hidden; vertical-align: bottom; margin-right: 0.18em; }
         .word-inner {
@@ -1036,7 +1032,7 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: radial-gradient(circle at var(--holo-x, 50%) var(--holo-y, 50%), rgba(167,139,250,0.28), rgba(124,58,237,0.08) 45%, transparent 65%);
+            background: radial-gradient(circle at var(--holo-x, 50%) var(--holo-y, 50%), rgba(190,155,110,0.28), rgba(139,99,64,0.08) 45%, transparent 65%);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
@@ -1057,16 +1053,16 @@
         /* CONTACT CARD AMBIENT PULSE */
         .contact-card { animation: contact-pulse 4s ease-in-out infinite; }
         @keyframes contact-pulse {
-            0%,100% { box-shadow: 0 0 0px rgba(109,40,217,0); }
-            50% { box-shadow: 0 0 80px rgba(109,40,217,0.1), 0 0 120px rgba(167,139,250,0.06); }
+            0%,100% { box-shadow: 0 0 0px rgba(139,99,64,0); }
+            50% { box-shadow: 0 0 80px rgba(139,99,64,0.1), 0 0 120px rgba(190,155,110,0.06); }
         }
 
         /* SECTION DIVIDER GLOW */
-        .section-divider { box-shadow: 0 0 10px rgba(109,40,217,0.45); }
+        .section-divider { box-shadow: 0 0 10px rgba(139,99,64,0.45); }
 
         /* AURORA BACKGROUND SHIFT */
         body {
-            background: linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 35%, #f0f4ff 65%, #eef4ff 100%);
+            background: linear-gradient(135deg, #f5f0e8 0%, #f2ece0 35%, #f5f0e8 65%, #f4ede0 100%);
             background-size: 400% 400%;
             animation: aurora-bg 12s ease infinite;
         }
@@ -1090,7 +1086,7 @@
             position: absolute;
             inset: -12px;
             border-radius: 50px;
-            background: radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(139,99,64,0.08) 0%, transparent 70%);
             pointer-events: none;
             animation: btn-ring-pulse 3s ease-in-out infinite;
         }
@@ -1101,10 +1097,10 @@
 
         /* SKILL TAG RAINBOW ON HOVER */
         .skill-tag:hover {
-            background: linear-gradient(90deg, #7c3aed, #a78bfa, #818cf8) !important;
+            background: linear-gradient(90deg, #a87d52, #c4996a, #b87c52) !important;
             color: white !important;
             border-color: transparent !important;
-            box-shadow: 0 4px 16px rgba(124,58,237,0.35);
+            box-shadow: 0 4px 16px rgba(139,99,64,0.35);
         }
 
         /* TIMELINE LINE ANIMATED DRAW */
@@ -1114,15 +1110,15 @@
         }
         @keyframes tl-draw { from { transform: scaleY(0); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
 
-        /* EDU CARD LEFT ACCENT BAR */
+        /* EDU CARD TOP ACCENT BAR */
         .edu-card {
-            border-left: 3px solid transparent;
+            border-top: 3px solid var(--accent);
             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .edu-card:hover {
-            border-left-color: var(--accent) !important;
-            transform: translateX(6px) !important;
-            box-shadow: -4px 0 24px rgba(109,40,217,0.12) !important;
+            border-top-color: var(--accent-light) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(139,99,64,0.1) !important;
         }
 
         /* HERO PHOTO FLOAT */
@@ -1131,8 +1127,8 @@
             animation: photo-idle 6s ease-in-out infinite;
         }
         @keyframes photo-idle {
-            0%,100% { box-shadow: 0 0 30px rgba(109,40,217,0.2); }
-            50% { box-shadow: 0 0 60px rgba(109,40,217,0.4), 0 0 100px rgba(167,139,250,0.2); }
+            0%,100% { box-shadow: 0 0 30px rgba(139,99,64,0.2); }
+            50% { box-shadow: 0 0 60px rgba(139,99,64,0.4), 0 0 100px rgba(190,155,110,0.2); }
         }
 
         /* PROJECT IMAGE ANIMATIONS */
@@ -1143,7 +1139,7 @@
         }
         .proj-img-wrap:hover {
             border-color: var(--accent) !important;
-            box-shadow: 0 0 30px rgba(109,40,217,0.45), 0 12px 40px rgba(109,40,217,0.2) !important;
+            box-shadow: 0 0 30px rgba(139,99,64,0.45), 0 12px 40px rgba(139,99,64,0.2) !important;
             z-index: 10;
         }
 
@@ -1163,7 +1159,7 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 200px;
-            background: linear-gradient(135deg, rgba(109,40,217,0.82), rgba(167,139,250,0.7));
+            background: linear-gradient(135deg, rgba(139,99,64,0.82), rgba(190,155,110,0.7));
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1228,9 +1224,9 @@
             .nav-links { gap: 1.25rem; }
             .nav-links a { font-size: 0.82rem; }
             .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-            section { padding: 4rem 1.25rem; }
-            .skills-inner { padding: 4rem 1.25rem; }
-            .contact-card { padding: 2.5rem 1.25rem; }
+            section { padding: 2rem 1.25rem; }
+            .skills-inner { padding: 2rem 1.25rem; }
+            .contact-card { padding: 1.5rem 1rem; }
             .contact-links { flex-direction: column; align-items: center; }
             [style*="grid-column: span 2"] { grid-column: span 1 !important; }
         }
@@ -1289,19 +1285,19 @@
         }
         .blob-1 {
             width: 500px; height: 500px;
-            background: #7c3aed;
+            background: #a87d52;
             top: -100px; left: -100px;
             animation-delay: 0s;
         }
         .blob-2 {
             width: 400px; height: 400px;
-            background: #a78bfa;
+            background: #c4996a;
             top: 40%; right: -100px;
             animation-delay: 3s;
         }
         .blob-3 {
             width: 350px; height: 350px;
-            background: #6d28d9;
+            background: #8b6340;
             bottom: -50px; left: 30%;
             animation-delay: 6s;
         }
@@ -1331,8 +1327,6 @@
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
-
 <!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox">
     <div class="lightbox-img-wrap">
@@ -1345,19 +1339,6 @@
 <!-- SCROLL PROGRESS BAR -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- CURSOR GLOW -->
-<div class="cursor-glow" id="cursorGlow"></div>
-
-<!-- BACKGROUND BLOBS -->
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-
-<!-- FLOATING RINGS -->
-<div class="ring ring-1"></div>
-<div class="ring ring-2"></div>
-<div class="ring ring-3"></div>
-
 <!-- NAV -->
 <nav>
     <div class="nav-logo">Jenny S. Yburan</div>
@@ -1366,27 +1347,23 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
-        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-    <div>
-        <div class="hero-photo">
-            <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/photo.jpg" alt="Jenny Santos Yburan">
-        </div>
-        <div class="hero-tag">Available for Remote Work</div>
+    <div class="hero-left">
+        <div class="hero-tag">Open to New Clients &nbsp;·&nbsp; Remote</div>
         <h1>Jenny Yburan</h1>
-        <p class="hero-sub">Virtual Assistant specializing in Shopify Store Management, Customer Support, Chargeback Handling, Data Entry, Social Media, and AI Automation. Helping businesses run smoother every single day.</p>
+        <p class="hero-sub">Virtual Assistant helping founders and business owners with customer support, social media, Shopify operations, and AI-powered workflows so you can focus on what matters most.</p>
         <div class="hero-buttons">
             <a href="#contact" class="btn btn-primary">Work With Me</a>
-            <a href="#experience" class="btn btn-outline">View My Experience</a>
+            <a href="#experience" class="btn btn-outline">See My Work</a>
         </div>
     </div>
-    <div class="scroll-hint">
-        <span></span><span></span><span></span>
+    <div class="hero-photo">
+        <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/photo.jpg" alt="Jenny Santos Yburan">
     </div>
 </div>
 
@@ -1397,14 +1374,18 @@
     <div class="section-divider"></div>
     <div class="about-grid">
         <div class="about-text">
-            <p>I'm a detail-oriented Virtual Assistant based in San Carlos City, Pangasinan specializing in Shopify store management, customer support, chargeback handling, data entry, social media management, and AI automation.</p>
-            <p>I handle customer emails and tickets professionally, manage and track orders, negotiate refunds, monitor shipments, and keep everything organized in Google Sheets. I use AI tools including ChatGPT and Claude daily to work faster and smarter, and I have built real automation workflows using n8n for live businesses.</p>
-            <p>I am highly organized, reliable, and a fast learner. I follow SOPs precisely, work independently without supervision, and I am always looking for ways to do things better for the clients I work with.</p>
+            <p>I'm a Virtual Assistant based in the Philippines with hands-on experience supporting multiple e-commerce brands simultaneously. My work covers customer support, refund and chargeback handling, Shopify order management, social media management, and admin operations.</p>
+            <p>I work well independently, follow SOPs without needing to be micromanaged, and use AI tools like ChatGPT and Claude daily to work faster and communicate better. I've built real automation workflows using n8n for live businesses. I don't just talk about AI, I actually use it in my work.</p>
+            <p>If you need someone who shows up reliably, handles the details, and keeps things running without you having to follow up, that's exactly what I do.</p>
         </div>
         <div class="about-stats">
             <div class="stat-card">
                 <div class="stat-number">2+</div>
                 <div class="stat-label">Years in E-commerce</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Stores Supported</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">AI</div>
@@ -1413,10 +1394,6 @@
             <div class="stat-card">
                 <div class="stat-number">100%</div>
                 <div class="stat-label">Remote Ready</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">BSEd</div>
-                <div class="stat-label">Education Graduate</div>
             </div>
         </div>
     </div>
@@ -1501,7 +1478,7 @@
 <!-- SKILLS -->
 <div class="skills-outer" id="skills">
     <div class="skills-inner">
-        <div class="section-label">What I Offer</div>
+        <div class="section-label">What I Bring to the Table</div>
         <h2 class="section-title">Skills & Expertise</h2>
         <div class="section-divider"></div>
         <div class="skills-grid">
@@ -1571,67 +1548,390 @@
 
 <!-- EXPERIENCE -->
 <section id="experience">
-    <div class="section-label">Work History</div>
+    <div class="section-label">Work History & Proof of Work</div>
     <h2 class="section-title">Experience</h2>
     <div class="section-divider"></div>
     <div class="timeline">
 
         <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">July 2025 – Present</div>
-            <div class="timeline-title">Virtual Assistant & Sales Support Specialist</div>
-            <div class="timeline-company">E-commerce Retail Operations</div>
-            <ul class="timeline-list">
-                <li>Managed end-to-end e-commerce operations including product listing, order processing, invoicing, and customer fulfillment</li>
-                <li>Handled customer inquiries and follow-ups via Facebook inbox and social media platforms</li>
-                <li>Created product posts, descriptions, and visual content across multiple online sales channels</li>
-                <li>Tracked inventory, sales data, and business performance metrics using Google Sheets and Excel</li>
-                <li>Used ChatGPT and Claude to draft content, manage communications, and improve daily workflow efficiency</li>
-                <li>Operated independently managing all aspects of a live online retail business with no supervision</li>
-            </ul>
+            <div class="timeline-left"><div class="timeline-date">July 2025</div></div>
+            <div>
+                <div class="timeline-title">Virtual Assistant & Customer Support Specialist</div>
+                <div class="timeline-company">E-commerce Operations (Remote)</div>
+                <ul class="timeline-list">
+                    <li>Handled end-to-end customer support including email inquiries, refund requests, and chargeback cases for a UK-based Shopify store</li>
+                    <li>Managed and tracked customer orders, shipment status, and fulfillment in Shopify</li>
+                    <li>Built and maintained organized refund and chargeback trackers in Google Sheets</li>
+                    <li>Negotiated partial refund resolutions (30%–50%) and escalated complex cases appropriately</li>
+                    <li>Managed product listings, pricing, categories, and publishing status across multiple sales channels</li>
+                    <li>Used ChatGPT and Claude daily to draft professional customer replies and improve workflow efficiency</li>
+                </ul>
+            </div>
         </div>
 
         <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2024</div>
-            <div class="timeline-title">Sales Assistant</div>
-            <div class="timeline-company">E-commerce & Live Selling Operations</div>
-            <ul class="timeline-list">
-                <li>Conducted live selling sessions presenting products to online audiences, driving real-time sales conversions</li>
-                <li>Managed product photography, content creation, and product listing across multiple platforms</li>
-                <li>Processed customer orders and generated accurate invoices across multiple sales channels</li>
-                <li>Handled Facebook inbox management  inquiries, concerns, and customer relationships</li>
-                <li>Maintained inventory records and coordinated order fulfillment processes</li>
-                <li>Created engaging social media posts to drive traffic and increase online customer engagement</li>
-            </ul>
+            <div class="timeline-left"><div class="timeline-date">2025</div></div>
+            <div>
+                <div class="timeline-title">Social Media Manager</div>
+                <div class="timeline-company">Multiple E-commerce Stores (Remote)</div>
+                <ul class="timeline-list">
+                    <li>Managed Facebook and Instagram pages for multiple Shopify stores simultaneously</li>
+                    <li>Created, scheduled, and posted daily content following strict posting SOPs</li>
+                    <li>Replied to customer comments, DMs, and inquiries on social media promptly and professionally</li>
+                    <li>Maintained consistent brand tone and visual style across all posts</li>
+                    <li>Monitored engagement and ensured posts went live on schedule every day</li>
+                </ul>
+            </div>
         </div>
 
         <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">September 2025 – February 2026</div>
-            <div class="timeline-title">Private Tutor</div>
-            <div class="timeline-company">Academic Support</div>
-            <ul class="timeline-list">
-                <li>Managed student records, progress tracking, and performance documentation across multiple students</li>
-                <li>Developed organized lesson materials and maintained detailed academic reports</li>
-                <li>Communicated consistently with parents via messaging platforms for scheduling, updates, and progress reporting</li>
-                <li>Demonstrated strong time management and attention to detail in a fully self-managed setup</li>
-            </ul>
+            <div class="timeline-left"><div class="timeline-date">2025</div></div>
+            <div>
+                <div class="timeline-title">Refund & Chargeback Specialist</div>
+                <div class="timeline-company">E-commerce Operations (Remote)</div>
+                <ul class="timeline-list">
+                    <li>Handled refund requests, disputes, and chargeback cases for multiple Shopify stores</li>
+                    <li>Negotiated partial refund resolutions (30%–50%) to protect store revenue while satisfying customers</li>
+                    <li>Built and maintained organized tracking spreadsheets in Google Sheets</li>
+                    <li>Followed strict internal SOPs for consistent tone, escalation triggers, and resolution procedures</li>
+                    <li>Handled product delivery issues and digital download requests for customers</li>
+                </ul>
+            </div>
         </div>
 
         <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">January 2025 – April 2025</div>
-            <div class="timeline-title">Teaching Intern</div>
-            <div class="timeline-company">Real National High School, Urbiztondo, Pangasinan</div>
-            <ul class="timeline-list">
-                <li>Delivered classroom instruction and managed student records and assessment documentation</li>
-                <li>Planned and executed structured lessons aligned with curriculum standards and learning objectives</li>
-                <li>Collaborated with school staff and maintained organized documentation throughout the internship</li>
-            </ul>
+            <div class="timeline-left"><div class="timeline-date">2024 – 2025</div></div>
+            <div>
+                <div class="timeline-title">Sales Assistant & E-commerce VA</div>
+                <div class="timeline-company">E-commerce & Live Selling Operations</div>
+                <ul class="timeline-list">
+                    <li>Conducted live selling sessions presenting products to online audiences and driving real-time sales</li>
+                    <li>Handled Facebook inbox management including customer inquiries, concerns, and order follow-ups</li>
+                    <li>Processed customer orders and generated accurate invoices across multiple sales channels</li>
+                    <li>Managed product photography, content creation, and product listing across platforms</li>
+                    <li>Tracked sales data and business performance metrics using Google Sheets and Excel</li>
+                    <li>Operated independently with no supervision</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-left"><div class="timeline-date">Sep 2025 – Feb 2026</div></div>
+            <div>
+                <div class="timeline-title">Private Tutor</div>
+                <div class="timeline-company">Academic Support (Self-employed)</div>
+                <ul class="timeline-list">
+                    <li>Managed student records, progress tracking, and performance documentation</li>
+                    <li>Communicated consistently with parents for scheduling and updates</li>
+                    <li>Operated fully independently with strong time management and attention to detail</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-left"><div class="timeline-date">Jan – Apr 2025</div></div>
+            <div>
+                <div class="timeline-title">Teaching Intern</div>
+                <div class="timeline-company">Real National High School, Pangasinan</div>
+                <ul class="timeline-list">
+                    <li>Delivered classroom instruction and managed student records and assessment documentation</li>
+                    <li>Planned and executed structured lessons aligned with curriculum standards</li>
+                    <li>Maintained organized documentation throughout the internship</li>
+                </ul>
+            </div>
         </div>
 
     </div>
+
+    <!-- WORK SAMPLES -->
+    <div style="margin-top:3rem;">
+        <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:2px; color:var(--accent-light); margin-bottom:0.5rem;">Work Samples</div>
+        <div style="width:50px; height:3px; background:linear-gradient(90deg,var(--accent),transparent); border-radius:2px; margin-bottom:2rem;"></div>
+
+        <!-- CUSTOMER SUPPORT LABEL -->
+        <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; color:var(--accent-light); margin-bottom:1rem;">Customer Support & E-commerce</div>
+
+        <!-- Toniflex -->
+        <div class="skill-category" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">Customer Support · Order Management · Chargebacks</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">UK Shopify Store – Customer Support & Refund Management</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Handled full customer support for a live UK-based Shopify store. Managed customer orders, handled refund requests, negotiated partial refunds (30–50%), and tracked chargeback cases in Google Sheets. Built and maintained organized refund and chargeback trackers, receiving direct client praise for the quality of the work.</p>
+                    <div style="background:rgba(139,99,64,0.08); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.75rem 1rem; margin-bottom:1rem; font-size:0.85rem; color:var(--muted); font-style:italic;">"these excels that you done are very good 👍" <strong style="color:var(--text); font-style:normal;">Client Feedback</strong></div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Shopify</span>
+                        <span class="skill-tag">Customer Support</span>
+                        <span class="skill-tag">Order Management</span>
+                        <span class="skill-tag">Chargeback Handling</span>
+                        <span class="skill-tag">Refund Negotiation</span>
+                        <span class="skill-tag">Google Sheets</span>
+                        <span class="skill-tag">Email Support</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🎧</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Store</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">UK Shopify Store</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/toniflex-orders.png" alt="Shopify Orders Dashboard" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Shopify orders dashboard</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/toniflex-refund-tracker.png" alt="Refund Tracker Google Sheets" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Refund & chargeback tracker in Google Sheets</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/toniflex-feedback.png" alt="Client feedback" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Client feedback on Google Sheets quality</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopify Product Listing -->
+        <div class="skill-category" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">E-commerce · Shopify Product Listing</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Shopify Store – Hands-On Product Listing</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Created and published real product listings on a live Shopify store. Managed product titles, descriptions, pricing, categories, images, and publishing status across multiple sales channels. All products set to Active and Published with accurate category assignments.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Shopify</span>
+                        <span class="skill-tag">Product Listing</span>
+                        <span class="skill-tag">Product Publishing</span>
+                        <span class="skill-tag">Pricing</span>
+                        <span class="skill-tag">Category Management</span>
+                        <span class="skill-tag">Multi-Channel</span>
+                        <span class="skill-tag">E-commerce</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🛒</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Platform</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">Shopify</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/shopify-products-1.png" alt="Shopify Product Listing - Status View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Product listings – Active status across multiple channels</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/shopify-products-2.png" alt="Shopify Product Listing - Published View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Products published with accurate pricing and categories</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fokus Planner -->
+        <div class="skill-category" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">Customer Support · Social Media · Digital Products</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Digital Planner Store – VA & Customer Support</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Worked as a Virtual Assistant for a Shopify store selling digital planners (GoodNotes/PDF templates) targeting the German-speaking market (Germany, Austria, Switzerland). Handled customer support replies in German, processed refund and download requests, and managed and posted daily content on the store's Facebook and Instagram pages following strict internal SOPs.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Shopify</span>
+                        <span class="skill-tag">Customer Support</span>
+                        <span class="skill-tag">German-Market</span>
+                        <span class="skill-tag">Refund Handling</span>
+                        <span class="skill-tag">Social Media Management</span>
+                        <span class="skill-tag">Instagram</span>
+                        <span class="skill-tag">Facebook</span>
+                        <span class="skill-tag">Digital Products</span>
+                        <span class="skill-tag">SOP Compliance</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">📓</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Store</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">Digital Planner Store</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wood Blueprints -->
+        <div class="skill-category" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">Customer Support · Digital Products · E-commerce</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Woodworking Plans Store – Customer Support VA</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Provided customer support for a Shopify store selling digital woodworking and metalworking plans, DIY project guides, workshop business systems, and commercial licenses. Handled product delivery issues, refund requests, and customer complaints for a catalog of 300+ digital products (PDFs, Google Drive folders, Google Sheets, SVG/DXF files). Also managed and posted content on the store's Facebook and Instagram pages to drive engagement and traffic. Followed strict written SOPs for consistent tone and escalation procedures.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Shopify</span>
+                        <span class="skill-tag">Customer Support</span>
+                        <span class="skill-tag">Digital Products</span>
+                        <span class="skill-tag">Refund Management</span>
+                        <span class="skill-tag">Product Delivery</span>
+                        <span class="skill-tag">Email Support</span>
+                        <span class="skill-tag">Instagram</span>
+                        <span class="skill-tag">Facebook</span>
+                        <span class="skill-tag">Social Media Management</span>
+                        <span class="skill-tag">SOP Compliance</span>
+                        <span class="skill-tag">E-commerce</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🪵</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Store</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">Woodworking Plans Store</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI PROJECTS LABEL -->
+        <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; color:var(--accent-light); margin:2rem 0 1rem;">AI Automation Projects</div>
+
+        <!-- Grace AI Dashboard -->
+        <div class="skill-category" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Web Development · King Land Buyers</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Grace AI Receptionist Dashboard</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a real-time AI receptionist dashboard for King Land Buyers using Claude AI. Features live call performance overview, lead tracking by state, caller profiles, status distribution charts, and a live calendar. Tracks total leads, qualified leads, callbacks, conversion rates, and returning callers in real time.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Claude AI</span>
+                        <span class="skill-tag">Real-Time Dashboard</span>
+                        <span class="skill-tag">Lead Tracking</span>
+                        <span class="skill-tag">Caller Profiles</span>
+                        <span class="skill-tag">Live Calendar</span>
+                        <span class="skill-tag">Data Visualization</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">📊</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">Claude AI</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/dashboard1.png" alt="Grace AI Receptionist Overview" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Overview – Real-time performance dashboard</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/dashboard2.png" alt="Grace AI Calendar View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Calendar – Leads and calls tracked by date</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GlowUp -->
+        <div class="skill-category" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Voice Automation · Retell AI + n8n + Supabase</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">GlowUp Hair Salon – AI Voice Receptionist</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a fully working AI voice receptionist using Retell AI and GPT-4.1. The AI answers customer calls, collects caller info, and books appointments. An n8n automation then creates a Google Calendar event, logs the call to Google Sheets, saves it to Supabase, and sends a Discord notification. Deployed live on Railway.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Retell AI</span>
+                        <span class="skill-tag">GPT-4.1</span>
+                        <span class="skill-tag">n8n Automation</span>
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">Google Calendar</span>
+                        <span class="skill-tag">Google Sheets</span>
+                        <span class="skill-tag">Railway</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🎙️</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">Retell AI + n8n</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-receptionist.png" alt="GlowUp Voice Receptionist" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Voice receptionist ready to receive calls</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-connected.png" alt="GlowUp Connected" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">AI live and connected with a caller</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-n8n.png" alt="n8n Post-Call Workflow" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">n8n post-call workflow – calendar, sheets, Discord</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Blog Generator -->
+        <div class="skill-category" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Content Automation · Python + n8n + Supabase</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">AI Blog Generator</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a web app using Python and FastAPI that generates full blog posts using the OpenAI API. The generated blog is automatically saved to Supabase, converted to an HTML file, and sent to a Discord channel via n8n webhook. Deployed live on Railway.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">n8n Workflow</span>
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">Discord Webhook</span>
+                        <span class="skill-tag">Railway</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">✍️</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">Python + OpenAI</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-generator-app.png" alt="AI Blog Generator App" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Blog generator producing full AI-written posts</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-n8n.png" alt="n8n Blog Workflow" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">n8n workflow automating blog delivery</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-discord.png" alt="Blog sent to Discord" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Generated blog sent to Discord as HTML file</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Website Chatbot -->
+        <div class="skill-category">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Chatbot · Python + Web Scraping + OpenAI</div>
+                    <h3 style="font-size:1.05rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">AI Website Knowledge Chatbot</h3>
+                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a Python web app that scrapes any website and turns it into an AI chatbot that knows the business inside and out. Enter a URL, the app crawls all pages and chunks the content, then you can ask it anything about that business. Powered by OpenAI and deployed on Railway.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Web Scraping</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Railway</span>
+                    </div>
+                </div>
+                <div style="background:rgba(139,99,64,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:160px; text-align:center; flex-shrink:0;">
+                    <div style="font-size:2rem; margin-bottom:0.5rem;">🤖</div>
+                    <div style="font-size:0.72rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
+                    <div style="font-size:0.9rem; font-weight:700; margin-top:0.25rem;">Python + OpenAI</div>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/ai-chatbot-scrape.png" alt="AI Chatbot Scraping" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">App scraping a live website and chunking its content</div>
+                </div>
+                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/ai-chatbot-chat.png" alt="AI Chatbot Answering" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:180px; object-fit:cover; object-position:top; display:block;">
+                    <div style="padding:0.5rem 0.75rem; background:rgba(139,99,64,0.07); font-size:0.73rem; color:var(--muted);">Chatbot answering questions from scraped business knowledge</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </section>
 
 <!-- EDUCATION -->
@@ -1671,272 +1971,13 @@
     </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-    <div class="section-label">AI Work Samples</div>
-    <h2 class="section-title">Projects</h2>
-    <div class="section-divider"></div>
-    <div class="skills-grid">
 
-        <div class="skill-category" style="grid-column: span 2;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Web Development · WS Agency</div>
-                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Internal Web Dashboard</h3>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a fully functional internal web dashboard for a client at WS Agency using Claude AI. The dashboard includes a <strong style="color:var(--text);">live calendar</strong> for scheduling and a <strong style="color:var(--text);">live leads & caller profiles</strong> section for managing and tracking client leads in real time.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Claude AI</span>
-                        <span class="skill-tag">Web Dashboard</span>
-                        <span class="skill-tag">Live Calendar</span>
-                        <span class="skill-tag">Lead Management</span>
-                        <span class="skill-tag">Caller Profiles</span>
-                        <span class="skill-tag">WS Agency</span>
-                    </div>
-                </div>
-                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:0.5rem;">🖥️</div>
-                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Claude AI</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Web Development · King Land Buyers</div>
-                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Grace AI Receptionist Dashboard</h3>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a real-time AI receptionist dashboard for King Land Buyers using Claude AI. The dashboard features a <strong style="color:var(--text);">live overview of call performance</strong>, <strong style="color:var(--text);">lead tracking by state</strong>, <strong style="color:var(--text);">caller profiles</strong>, <strong style="color:var(--text);">status distribution charts</strong>, and a <strong style="color:var(--text);">live calendar</strong> showing leads and calls by date. The system tracks total leads, qualified leads, callbacks, conversion rates, and returning callers in real time.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Claude AI</span>
-                        <span class="skill-tag">Real-Time Dashboard</span>
-                        <span class="skill-tag">Lead Tracking</span>
-                        <span class="skill-tag">Caller Profiles</span>
-                        <span class="skill-tag">Live Calendar</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">King Land Buyers</span>
-                    </div>
-                </div>
-                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:0.5rem;">📊</div>
-                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Claude AI</div>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/dashboard1.png" alt="Grace AI Receptionist Overview" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Overview  Real-time performance dashboard</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/dashboard2.png" alt="Grace AI Calendar View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Calendar  Leads and calls tracked by date</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">E-commerce · Shopify Product Listing</div>
-                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Shopify Store  Hands-On Product Listing</h3>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Created and published real product listings on a live Shopify store. Managed product titles, descriptions, pricing, categories, images, and publishing status across multiple sales channels. All products were set to <strong style="color:var(--text);">Active and Published</strong> status with accurate category assignments including Action Figures and Animal Figures.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Shopify</span>
-                        <span class="skill-tag">Product Listing</span>
-                        <span class="skill-tag">Product Publishing</span>
-                        <span class="skill-tag">Pricing</span>
-                        <span class="skill-tag">Category Management</span>
-                        <span class="skill-tag">Multi-Channel</span>
-                        <span class="skill-tag">E-commerce</span>
-                    </div>
-                </div>
-                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:0.5rem;">🛒</div>
-                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Platform</div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Shopify</div>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/shopify-products-1.png" alt="Shopify Product Listing - Status View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Product listings  Active status across multiple channels</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/shopify-products-2.png" alt="Shopify Product Listing - Published View" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Products published with accurate pricing and categories</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECT: Toniflex Customer Support -->
-        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">Customer Support · Order Management · Chargebacks</div>
-                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">Toniflex: Customer Support and Refund Management</h3>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Handled full customer support operations for a live UK-based Shopify store. Managed and tracked <strong style="color:var(--text);">2,000+ orders</strong>, handled customer refund requests, negotiated partial refund offers (30% and 50%), and tracked chargeback cases in a structured Google Sheets system. Built and maintained organized tracking sheets for customer emails, refund statuses, and escalations — receiving direct client praise for the quality of the work.</p>
-                    <div style="background:rgba(124,58,237,0.08); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:0.75rem 1rem; margin-bottom:1rem; font-size:0.88rem; color:var(--muted); font-style:italic;">"these excels that you done are very good 👍" <strong style="color:var(--text); font-style:normal;">Zako, Toniflex Client</strong></div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Shopify</span>
-                        <span class="skill-tag">Customer Support</span>
-                        <span class="skill-tag">Order Management</span>
-                        <span class="skill-tag">Chargeback Handling</span>
-                        <span class="skill-tag">Refund Negotiation</span>
-                        <span class="skill-tag">Google Sheets</span>
-                        <span class="skill-tag">Email Support</span>
-                    </div>
-                </div>
-                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:0.5rem;">🎧</div>
-                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Store</div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Toniflex UK</div>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/toniflex-orders.png" alt="Toniflex Shopify Orders Dashboard" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">2,000+ orders managed in Shopify</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/toniflex-refund-tracker.png" alt="Toniflex Refund Tracker Google Sheets" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Refund and chargeback tracker built in Google Sheets</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/toniflex-feedback.png" alt="Client feedback on work quality" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Client feedback on Google Sheets quality</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- AUTOMATION SECTION LABEL -->
-        <div style="grid-column: span 2; margin-top:2rem;">
-            <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:2px; color:var(--accent-light); margin-bottom:0.5rem;">AI Automation Projects</div>
-            <div style="width:50px; height:3px; background:linear-gradient(90deg,var(--accent),transparent); border-radius:2px;"></div>
-        </div>
-
-        <!-- PROJECT: GlowUp Voice Receptionist -->
-        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Voice Automation · Retell AI + n8n + Supabase</div>
-                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">GlowUp Hair Salon AI Voice Receptionist</h3>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a fully working AI voice receptionist for GlowUp Hair Salon using Retell AI and GPT-4.1. The AI answers customer calls, collects caller information, and books appointments. After each call, an <strong style="color:var(--text);">n8n automation workflow</strong> is triggered that extracts call data, creates a <strong style="color:var(--text);">Google Calendar event</strong>, logs the call to <strong style="color:var(--text);">Google Sheets</strong>, saves it to <strong style="color:var(--text);">Supabase</strong>, and sends a <strong style="color:var(--text);">Discord notification</strong>. The entire system is deployed live on Railway.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Retell AI</span>
-                        <span class="skill-tag">GPT-4.1</span>
-                        <span class="skill-tag">n8n Automation</span>
-                        <span class="skill-tag">Supabase</span>
-                        <span class="skill-tag">Google Calendar</span>
-                        <span class="skill-tag">Google Sheets</span>
-                        <span class="skill-tag">Discord Webhook</span>
-                        <span class="skill-tag">Railway</span>
-                    </div>
-                </div>
-                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:0.5rem;">🎙️</div>
-                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Retell AI + n8n</div>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-receptionist.png" alt="GlowUp Hair Salon Call Now" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Voice receptionist web app ready to receive calls</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-connected.png" alt="GlowUp Hair Salon AI Voice Receptionist Connected" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">AI receptionist live and connected with a caller</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/glowup-n8n.png" alt="n8n Post-Call Automation Workflow" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">n8n post-call workflow automating calendar, sheets and Discord</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECT: AI Blog Generator -->
-        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Content Automation · Python + n8n + Supabase</div>
-                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">AI Blog Generator</h3>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a web app using Python and FastAPI that generates full blog posts using the <strong style="color:var(--text);">OpenAI API</strong>. The generated blog is automatically saved to a <strong style="color:var(--text);">Supabase database</strong>, converted to an HTML file, and sent to a <strong style="color:var(--text);">Discord channel</strong> via webhook using an n8n workflow. The app is deployed live on Railway.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">OpenAI API</span>
-                        <span class="skill-tag">n8n Workflow</span>
-                        <span class="skill-tag">Supabase</span>
-                        <span class="skill-tag">Discord Webhook</span>
-                        <span class="skill-tag">Railway</span>
-                        <span class="skill-tag">GitHub</span>
-                    </div>
-                </div>
-                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:0.5rem;">✍️</div>
-                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Python + OpenAI</div>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.25rem;">
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-generator-app.png" alt="AI Blog Generator Web App" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Blog generator producing full AI written blog posts</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-n8n.png" alt="Blog Generator n8n Workflow" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">n8n workflow automating blog generation and delivery</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/blog-discord.png" alt="Blog sent to Discord" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Generated blog automatically sent to Discord as HTML file</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECT: AI Website Chatbot -->
-        <div class="skill-category" style="grid-column: span 2; margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent-light); margin-bottom:0.5rem;">AI Chatbot · Python + Web Scraping + OpenAI</div>
-                    <h3 style="font-size:1.1rem; font-weight:700; color:var(--text); text-transform:none; letter-spacing:0; margin-bottom:0.75rem;">AI Website Knowledge Chatbot</h3>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.75; margin-bottom:1rem;">Built a Python web app that <strong style="color:var(--text);">scrapes any website</strong> and turns it into an AI chatbot that knows the business inside and out. Enter a website URL, the app crawls all pages and chunks the content, then you can ask it anything about that business. Powered by OpenAI and deployed on Railway.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Web Scraping</span>
-                        <span class="skill-tag">OpenAI API</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Railway</span>
-                        <span class="skill-tag">GitHub</span>
-                    </div>
-                </div>
-                <div style="background:rgba(124,58,237,0.1); border:1px solid var(--border); border-radius:10px; padding:1.25rem; min-width:180px; text-align:center;">
-                    <div style="font-size:2rem; margin-bottom:0.5rem;">🤖</div>
-                    <div style="font-size:0.78rem; color:var(--accent-light); font-weight:600; text-transform:uppercase; letter-spacing:1px;">Built with</div>
-                    <div style="font-size:0.95rem; font-weight:700; margin-top:0.25rem;">Python + OpenAI</div>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.25rem;">
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/ai-chatbot-scrape.png" alt="AI Website Chatbot Scraping" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">App scraping a live website and chunking its content</div>
-                </div>
-                <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border);">
-                    <img src="https://jennysantos2456-dev.github.io/jenny-portfolio/ai-chatbot-chat.png" alt="AI Chatbot answering questions" class="sample-img" onclick="openLightbox(this)" style="width:100%; height:200px; object-fit:cover; object-position:top; display:block;">
-                    <div style="padding:0.5rem 0.75rem; background:rgba(124,58,237,0.08); font-size:0.75rem; color:var(--muted);">Chatbot answering questions from scraped business knowledge</div>
-                </div>
-            </div>
-        </div>
-
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
     <div class="contact-card">
-        <h2>Let's Work Together</h2>
-        <p>Looking for a reliable, tech-savvy Virtual Assistant? I'm available for remote work and ready to support your business operations from day one.</p>
+        <h2>Ready to Take Things Off Your Plate?</h2>
+        <p>If you're a founder or business owner who needs a reliable VA that works independently, follows through, and actually gets things done. Let's talk. I'm available for remote work and ready to start right away.</p>
         <div class="contact-links">
             <a href="mailto:jennyburan21@gmail.com" class="contact-link">
                 <div class="contact-icon">✉</div>
@@ -1956,7 +1997,7 @@
 </section>
 
 <footer>
-    <p>© 2026 Jenny Santos Yburan &nbsp;·&nbsp; Virtual Assistant & AI Workflow Specialist &nbsp;·&nbsp; San Carlos City, Pangasinan</p>
+    <p>© 2026 Jenny Santos Yburan &nbsp;·&nbsp; Virtual Assistant &nbsp;·&nbsp; San Carlos City, Pangasinan, Philippines</p>
 </footer>
 
 <script>
@@ -1967,11 +2008,10 @@
         progressBar.style.width = scrolled + '%';
     });
 
-    // CURSOR GLOW FOLLOW
-    const cursorGlow = document.getElementById('cursorGlow');
-    document.addEventListener('mousemove', e => {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
+    // NAV SCROLLED CLASS
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
     // NAV HIGHLIGHT
@@ -1984,505 +2024,37 @@
             if (el && window.scrollY >= el.offsetTop - 120) current = id;
         });
         navLinks.forEach(a => {
-            a.style.color = a.getAttribute('href') === '#' + current ? '#7c3aed' : '';
+            a.style.color = a.getAttribute('href') === '#' + current ? '#a87d52' : '';
         });
     });
 
-    // SMOOTH SCROLL REVEAL
-    const revealEls = document.querySelectorAll('section, .skill-category, .timeline-item, .stat-card, .tools-marquee-wrapper, h2, .section-label');
-    revealEls.forEach(el => el.classList.add('reveal'));
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add('visible'), i * 60);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08 });
-    revealEls.forEach(el => observer.observe(el));
+    // MAKE ALL HIDDEN ELEMENTS VISIBLE
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.skill-tag').forEach(tag => tag.classList.add('tag-visible'));
+    document.querySelectorAll('.sample-img').forEach(img => img.classList.add('img-revealed'));
+    document.querySelectorAll('.word-inner').forEach(w => w.classList.add('word-in'));
+    document.querySelectorAll('.section-label span').forEach(s => { s.style.opacity = '1'; s.style.transform = 'translateY(0)'; });
 
-    // FLOATING PARTICLES
-    function createParticle() {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = Math.random() * 5 + 2;
-        p.style.cssText = `
-            width:${size}px; height:${size}px;
-            left:${Math.random()*100}vw;
-            animation-duration:${Math.random()*10+8}s;
-            animation-delay:${Math.random()*3}s;
-            opacity:0;
-        `;
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 18000);
-    }
-    setInterval(createParticle, 500);
+    // SHOW STAT NUMBERS AS-IS
+    document.querySelectorAll('.stat-number').forEach(el => el.style.opacity = '1');
 
-    // BLOB + RING PARALLAX
-    const blob1 = document.querySelector('.blob-1');
-    const blob2 = document.querySelector('.blob-2');
-    const blob3 = document.querySelector('.blob-3');
-    const ring1 = document.querySelector('.ring-1');
-    const ring2 = document.querySelector('.ring-2');
-    const ring3 = document.querySelector('.ring-3');
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const y = window.scrollY;
-                if (blob1) blob1.style.transform = `translateY(${y * 0.18}px)`;
-                if (blob2) blob2.style.transform = `translateY(${-y * 0.12}px)`;
-                if (blob3) blob3.style.transform = `translateY(${y * 0.09}px)`;
-                if (ring1) ring1.style.transform = `translateY(${y * 0.05}px) rotate(${y*0.02}deg)`;
-                if (ring2) ring2.style.transform = `translateY(${-y * 0.07}px) rotate(${-y*0.01}deg)`;
-                if (ring3) ring3.style.transform = `translateY(${y * 0.06}px)`;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    // TYPEWRITER EFFECT ON HERO TAGLINE
-    const taglines = [
-        'Virtual Assistant & AI-Powered Workflow Specialist',
-        'Shopify Product Listing Expert',
-        'Customer Support & Inbox Manager',
-        'Detail-Oriented & Reliable Remote Worker'
-    ];
-    const taglineEl = document.querySelector('.hero-tagline');
-    if (taglineEl) {
-        taglineEl.classList.add('typewriter-text');
-        let tIndex = 0, cIndex = 0, deleting = false;
-        function typeWriter() {
-            const current = taglines[tIndex];
-            if (!deleting) {
-                taglineEl.textContent = current.slice(0, cIndex + 1);
-                cIndex++;
-                if (cIndex === current.length) { deleting = true; setTimeout(typeWriter, 2000); return; }
-            } else {
-                taglineEl.textContent = current.slice(0, cIndex - 1);
-                cIndex--;
-                if (cIndex === 0) { deleting = false; tIndex = (tIndex + 1) % taglines.length; }
-            }
-            setTimeout(typeWriter, deleting ? 40 : 70);
-        }
-        typeWriter();
-    }
-
-    // CARD RIPPLE EFFECT ON CLICK
-    document.querySelectorAll('.skill-category, .stat-card').forEach(card => {
-        card.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            ripple.style.cssText = `
-                position:absolute; border-radius:50%;
-                width:10px; height:10px;
-                background:rgba(109,40,217,0.3);
-                left:${e.clientX - rect.left - 5}px;
-                top:${e.clientY - rect.top - 5}px;
-                transform:scale(0);
-                animation:ripple-expand 0.6s ease forwards;
-                pointer-events:none;
-            `;
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 600);
-        });
-    });
-
-    // RIPPLE KEYFRAME
-    const style = document.createElement('style');
-    style.textContent = '@keyframes ripple-expand { to { transform:scale(40); opacity:0; } }';
-    document.head.appendChild(style);
-
-    // NAV SCROLLED CLASS
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-    // NUMBER COUNTER ON STAT CARDS
-    function animateCounter(el, target, suffix) {
-        const card = el.closest('.stat-card');
-        card.classList.add('counting');
-        let current = 0;
-        const isNumeric = /^\d+/.test(target);
-        if (!isNumeric) { el.textContent = target; card.classList.remove('counting'); return; }
-        const end = parseInt(target);
-        const duration = 1200;
-        const step = duration / end;
-        const timer = setInterval(() => {
-            current++;
-            el.textContent = current + (suffix || '');
-            if (current >= end) {
-                el.textContent = target;
-                clearInterval(timer);
-                card.classList.remove('counting');
-            }
-        }, step);
-    }
-
-    const statObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const numEl = entry.target.querySelector('.stat-number');
-                const raw = numEl.textContent.trim();
-                animateCounter(numEl, raw);
-                statObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.stat-card').forEach(c => statObserver.observe(c));
-
-    // STAGGERED SKILL TAGS ENTRANCE
-    const tagObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('.skill-tag').forEach((tag, i) => {
-                    setTimeout(() => tag.classList.add('tag-visible'), i * 60);
-                });
-                tagObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.skill-category').forEach(c => tagObserver.observe(c));
-
-    // 3D MOUSE TILT ON PROJECT & SKILL CARDS
-    document.querySelectorAll('.skill-category').forEach(card => {
-        card.classList.add('tilt-card');
-        card.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            this.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-8px) scale(1.02)`;
-            this.style.boxShadow = `${-x * 20}px ${-y * 20}px 40px rgba(109,40,217,0.18)`;
-        });
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-            this.style.boxShadow = '';
-        });
-    });
-
-    // TEXT SCRAMBLE ON HERO H1
-    const heroH1 = document.querySelector('.hero h1');
-    if (heroH1) {
-        const finalText = heroH1.textContent;
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&*';
-        let iteration = 0;
-        const scramble = setInterval(() => {
-            heroH1.textContent = finalText.split('').map((letter, i) => {
-                if (i < iteration) return finalText[i];
-                return letter === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
-            }).join('');
-            if (iteration >= finalText.length) clearInterval(scramble);
-            iteration += 0.5;
-        }, 30);
-    }
-
-    // TOOL ITEMS WAVE ENTRANCE
-    const toolObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('.tool-item').forEach((item, i) => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1), all 0.25s cubic-bezier(0.34,1.56,0.64,1)';
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, i * 50);
-                });
-                toolObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    const toolsGrid = document.querySelector('.tools-grid');
-    if (toolsGrid) toolObserver.observe(toolsGrid.parentElement);
-
-    // MARQUEE SPEED BOOST ON SCROLL
-    const tracks = document.querySelectorAll('.tools-marquee-track');
-    let lastScrollY = 0;
-    window.addEventListener('scroll', () => {
-        const speed = Math.min(1 + Math.abs(window.scrollY - lastScrollY) * 0.1, 5);
-        tracks.forEach(t => t.style.animationDuration = (25 / speed) + 's');
-        lastScrollY = window.scrollY;
-        clearTimeout(window._marqueeReset);
-        window._marqueeReset = setTimeout(() => {
-            tracks.forEach(t => t.style.animationDuration = '25s');
-        }, 300);
-    });
-
-    // ============================================================
-    // PARTICLE NETWORK CANVAS
-    // ============================================================
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let cW = canvas.width = window.innerWidth;
-    let cH = canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => {
-        cW = canvas.width = window.innerWidth;
-        cH = canvas.height = window.innerHeight;
-    });
-
-    let mouseCanvas = { x: -999, y: -999 };
-    document.addEventListener('mousemove', e => { mouseCanvas.x = e.clientX; mouseCanvas.y = e.clientY; });
-
-    const PCOUNT = 85;
-    const pts = Array.from({ length: PCOUNT }, () => ({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        r: Math.random() * 2.2 + 0.8,
-        op: Math.random() * 0.35 + 0.15
-    }));
-
-    function animCanvas() {
-        ctx.clearRect(0, 0, cW, cH);
-        pts.forEach(p => {
-            const dx = p.x - mouseCanvas.x, dy = p.y - mouseCanvas.y;
-            const d = Math.hypot(dx, dy);
-            if (d < 110 && d > 0) {
-                const f = (110 - d) / 110;
-                p.vx += (dx / d) * f * 0.09;
-                p.vy += (dy / d) * f * 0.09;
-            }
-            const spd = Math.hypot(p.vx, p.vy);
-            if (spd > 2) { p.vx *= 0.9; p.vy *= 0.9; }
-            p.vx *= 0.996; p.vy *= 0.996;
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0 || p.x > cW) { p.vx *= -1; p.x = Math.max(0, Math.min(cW, p.x)); }
-            if (p.y < 0 || p.y > cH) { p.vy *= -1; p.y = Math.max(0, Math.min(cH, p.y)); }
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(109,40,217,${p.op})`;
-            ctx.fill();
-        });
-        for (let i = 0; i < pts.length; i++) {
-            for (let j = i + 1; j < pts.length; j++) {
-                const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
-                if (d < 125) {
-                    ctx.beginPath();
-                    ctx.moveTo(pts[i].x, pts[i].y);
-                    ctx.lineTo(pts[j].x, pts[j].y);
-                    ctx.strokeStyle = `rgba(109,40,217,${(1 - d / 125) * 0.18})`;
-                    ctx.lineWidth = 0.8;
-                    ctx.stroke();
-                }
-            }
-            const dm = Math.hypot(pts[i].x - mouseCanvas.x, pts[i].y - mouseCanvas.y);
-            if (dm < 160) {
-                ctx.beginPath();
-                ctx.moveTo(pts[i].x, pts[i].y);
-                ctx.lineTo(mouseCanvas.x, mouseCanvas.y);
-                ctx.strokeStyle = `rgba(167,139,250,${(1 - dm / 160) * 0.5})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-            }
-        }
-        requestAnimationFrame(animCanvas);
-    }
-    animCanvas();
-
-    // ============================================================
-    // CURSOR TRAIL
-    // ============================================================
-    const TRAIL_N = 10;
-    const trailPos = Array.from({ length: TRAIL_N }, () => ({ x: -300, y: -300 }));
-    const trailEls = Array.from({ length: TRAIL_N }, (_, i) => {
-        const el = document.createElement('div');
-        const sz = Math.max(3, 13 - i * 1.1);
-        el.className = 'cursor-trail-dot';
-        el.style.cssText = `width:${sz}px;height:${sz}px;background:rgba(124,58,237,${0.65 - i * 0.06});`;
-        document.body.appendChild(el);
-        return el;
-    });
-    let rawMouse = { x: -300, y: -300 };
-    document.addEventListener('mousemove', e => { rawMouse = { x: e.clientX, y: e.clientY }; });
-    (function trailLoop() {
-        trailPos[0] = { ...rawMouse };
-        for (let i = 1; i < TRAIL_N; i++) {
-            trailPos[i].x += (trailPos[i - 1].x - trailPos[i].x) * 0.22;
-            trailPos[i].y += (trailPos[i - 1].y - trailPos[i].y) * 0.22;
-        }
-        trailEls.forEach((el, i) => {
-            el.style.left = trailPos[i].x + 'px';
-            el.style.top = trailPos[i].y + 'px';
-        });
-        requestAnimationFrame(trailLoop);
-    })();
-
-    // ============================================================
-    // MAGNETIC BUTTONS
-    // ============================================================
-    document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('mousemove', function(e) {
-            const r = this.getBoundingClientRect();
-            const x = (e.clientX - r.left - r.width / 2) * 0.3;
-            const y = (e.clientY - r.top - r.height / 2) * 0.3;
-            this.style.transform = `translate(${x}px,${y}px)`;
-        });
-        btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
-    });
-
-    // ============================================================
-    // WORD-BY-WORD TITLE REVEAL
-    // ============================================================
-    document.querySelectorAll('.section-title').forEach(el => {
-        el.innerHTML = el.textContent.trim().split(' ').map(w =>
-            `<span class="word-reveal"><span class="word-inner">${w}</span></span>`
-        ).join(' ');
-    });
-    const wordObs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('.word-inner').forEach((w, i) => {
-                    setTimeout(() => w.classList.add('word-in'), i * 95);
-                });
-                wordObs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.4 });
-    document.querySelectorAll('.section-title').forEach(el => wordObs.observe(el));
-
-    // ============================================================
-    // HOLOGRAPHIC SHIMMER — TRACK CURSOR INSIDE EACH CARD
-    // ============================================================
-    document.querySelectorAll('.skill-category').forEach(card => {
-        card.addEventListener('mousemove', function(e) {
-            const r = this.getBoundingClientRect();
-            this.style.setProperty('--holo-x', ((e.clientX - r.left) / r.width * 100) + '%');
-            this.style.setProperty('--holo-y', ((e.clientY - r.top) / r.height * 100) + '%');
-        });
-    });
-
-    // ============================================================
-    // HERO PHOTO 3D TILT WITH MOUSE
-    // ============================================================
-    const hPhoto = document.querySelector('.hero-photo');
-    if (hPhoto) {
-        document.addEventListener('mousemove', e => {
-            const r = hPhoto.getBoundingClientRect();
-            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-            const rx = ((e.clientY - cy) / window.innerHeight) * -22;
-            const ry = ((e.clientX - cx) / window.innerWidth) * 22;
-            hPhoto.style.transform = `perspective(500px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.06)`;
-        });
-    }
-
-    // ============================================================
-    // TIMELINE LINE ANIMATED DRAW
-    // ============================================================
-    const tlObs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('tl-ready');
-                tlObs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.05 });
-    const timeline = document.querySelector('.timeline');
-    if (timeline) tlObs.observe(timeline);
-
-    // ============================================================
-    // SECTION LABEL LETTER-BY-LETTER REVEAL
-    // ============================================================
-    document.querySelectorAll('.section-label').forEach(el => {
-        const text = el.textContent;
-        el.innerHTML = text.split('').map(c =>
-            `<span style="display:inline-block;opacity:0;transform:translateY(8px);transition:opacity 0.3s ease,transform 0.3s ease;">${c === ' ' ? '&nbsp;' : c}</span>`
-        ).join('');
-        const labelObs = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelectorAll('span').forEach((s, i) => {
-                        setTimeout(() => { s.style.opacity = '1'; s.style.transform = 'translateY(0)'; }, i * 35);
-                    });
-                    labelObs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        labelObs.observe(el);
-    });
-
-    // ============================================================
-    // STAT CARDS — EXPLOSIVE ENTRANCE + TILT
-    // ============================================================
-    document.querySelectorAll('.stat-card').forEach(card => {
-        card.addEventListener('mousemove', function(e) {
-            const r = this.getBoundingClientRect();
-            const x = (e.clientX - r.left - r.width / 2) / (r.width / 2);
-            const y = (e.clientY - r.top - r.height / 2) / (r.height / 2);
-            this.style.setProperty('transform', `perspective(400px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) scale(1.07)`, 'important');
-        });
-        card.addEventListener('mouseleave', function() {
-            this.style.removeProperty('transform');
-        });
-    });
-
-    // ============================================================
-    // PROJECT IMAGE LIFE — OVERLAY, GLARE, TILT, REVEAL
-    // ============================================================
-    document.querySelectorAll('.sample-img').forEach((img, idx) => {
+    // PROJECT IMAGE OVERLAYS
+    document.querySelectorAll('.sample-img').forEach(img => {
         const wrap = img.parentElement;
         wrap.classList.add('proj-img-wrap');
-
-        // Add caption class to the next sibling div
-        if (img.nextElementSibling) {
-            img.nextElementSibling.classList.add('img-caption');
-        }
-
-        // Hover zoom overlay
         const overlay = document.createElement('div');
         overlay.className = 'img-overlay';
-        overlay.innerHTML = `<span class="img-overlay-icon">🔍</span><span class="img-overlay-label">Click to expand</span>`;
+        overlay.innerHTML = '<span class="img-overlay-icon">🔍</span><span class="img-overlay-label">Click to expand</span>';
         wrap.appendChild(overlay);
-
-        // Glare effect
-        const glare = document.createElement('div');
-        glare.className = 'img-glare';
-        wrap.appendChild(glare);
-
-        // Mouse move — glare + 3D tilt
-        wrap.addEventListener('mousemove', function(e) {
-            const r = this.getBoundingClientRect();
-            const x = (e.clientX - r.left) / r.width;
-            const y = (e.clientY - r.top) / r.height;
-            glare.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
-            glare.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
-            const rx = (y - 0.5) * -14;
-            const ry = (x - 0.5) * 14;
-            this.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
-        });
-        wrap.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-        });
-
-        // Fade-in reveal on scroll
-        const revObs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => img.classList.add('img-revealed'), idx * 100);
-                    revObs.unobserve(img);
-                }
-            });
-        }, { threshold: 0.05 });
-        revObs.observe(img);
     });
-
-    // Fallback: reveal all images after 1.5s in case IntersectionObserver misses them
-    setTimeout(() => {
-        document.querySelectorAll('.sample-img:not(.img-revealed)').forEach(img => {
-            img.classList.add('img-revealed');
-        });
-    }, 1500);
 
     // LIGHTBOX
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCaption = document.getElementById('lightboxCaption');
     const lightboxClose = document.getElementById('lightboxClose');
+
+
 
     function openLightbox(img) {
         lightboxImg.src = img.src;
