@@ -124,9 +124,19 @@
 
         html { scroll-behavior: smooth; }
 
+        @keyframes gradientShift {
+            0%   { background-position: 0% 50%; }
+            25%  { background-position: 100% 50%; }
+            50%  { background-position: 100% 0%; }
+            75%  { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
+            background: linear-gradient(135deg, #f5f0e8, #ede0cc, #f9f3e8, #e8ddd0, #f2ebe0, #faf6ee);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
